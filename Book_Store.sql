@@ -70,7 +70,7 @@ create table SELLING_ORDERS(
   isbn          int NOT NULL,
   quantity      int NOT NULL,
   date          date ,
-  primary key(orderId),
+  primary key(orderId , isbn),
   foreign key (isbn) references BOOK (isbn) ON UPDATE CASCADE ON DELETE CASCADE,
   foreign key (userId) references USER_INFORMATION (userId) ON UPDATE CASCADE ON DELETE CASCADE
 );
