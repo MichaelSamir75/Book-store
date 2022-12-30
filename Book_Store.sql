@@ -39,7 +39,7 @@ create table BOOK_AUTHORS(
 
 create table USER_INFORMATION(
   userId     int auto_increment,
-  userName   varchar(100) NOT NULL,
+  userName   varchar(100) NOT NULL UNIQUE,
   password   varchar(50) NOT NULL,
   phone      varchar(11) ,
   first_name varchar(50) NOT NULL,
