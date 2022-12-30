@@ -10,14 +10,11 @@ public class DBConnection {
 
     public static Connection createConnection(){
         if(connection != null) return connection;
-
-        String driver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/BOOKSTORE?useSSL=false";
         String user = "root";
-        String password = "@ahmed1102001";
-
+        String password = "";
         try {
-            Class.forName(driver);
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,user,password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
