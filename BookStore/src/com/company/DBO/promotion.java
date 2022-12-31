@@ -13,7 +13,6 @@ public class promotion {
 	public boolean promote(String email){
 		try{
 			int userId = getUserId(email);
-			System.out.println(userId);
 			String str = "Insert into manager values ( "+ userId+ ")";
 			PreparedStatement sql = connection.prepareStatement(str);
 			sql.execute();

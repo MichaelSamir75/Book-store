@@ -37,7 +37,7 @@ public class addBook {
 			return false;
 		}
 	}
-	private boolean addAuthor(String authorName){
+	public boolean addAuthor(String authorName){
 		try{
 			String str = "Insert into `bookstore`.`author` (`authorName`) values ( \"" + authorName + "\" )";
 			PreparedStatement sql = connection.prepareStatement(str);
