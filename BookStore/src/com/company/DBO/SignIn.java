@@ -9,9 +9,9 @@ public class SignIn {
         connection = DBConnection.createConnection();
     }
 
-    public Boolean run(String username,String password){
+    public Boolean run(String email,String password){
         try {
-            String str = "Select password from USER_INFORMATION where userName = " + "\"" + username + "\"";
+            String str = "Select password from USER_INFORMATION where email = " + "\"" + email + "\"";
             PreparedStatement sql = connection.prepareStatement(str);
             ResultSet resultSet = sql.executeQuery();
             String passw = "";
