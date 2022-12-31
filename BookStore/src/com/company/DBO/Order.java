@@ -11,13 +11,19 @@ public class Order {
     public Order() {
         connection = DBConnection.createConnection();
     }
-    public boolean placeOrder(String bookName , int quantity , int id){
-      int isbn =0;
+    public boolean placeOrder(String bookName , String q , String mangerEmail){
+      int id=0 ;
+      int isbn =0; int quantity = Integer.parseInt(q);
       try {
           PreparedStatement sql = connection.prepareStatement("Select isbn from BOOK where title = " + "\"" + bookName + "\"");
           ResultSet resultSet = sql.executeQuery();
           while (resultSet.next()) {
               isbn=resultSet.getInt(1);
+          }
+          PreparedStatement sql2 = connection.prepareStatement("Select userId from USER_INFORMATION where email = " + "\"" + mangerEmail + "\"");
+          ResultSet resultSet2 = sql2.executeQuery();
+          while (resultSet2.next()) {
+              isbn=resultSet2.getInt(1);
           }
       }catch (SQLException e){
          System.out.println(e.getMessage());
@@ -52,7 +58,8 @@ public class Order {
         return res;
     }
 
-    public Boolean ConfirmOrders(int orderId){
+    public Boolean ConfirmOrders(String oId){
+        int orderId = Integer.parseInt(oId);
         try {
             PreparedStatement sql = connection.prepareStatement("delete from orders where orderId = " + orderId);
             sql.execute();
