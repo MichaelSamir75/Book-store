@@ -12,8 +12,9 @@ public class ModifyBook {
 		connection = DBConnection.createConnection();
 	}
 
-	public boolean modifyBook(int Isbn,String authorName,String title,String publisherName,int publicationYear,double sellingPrice,String category,int numOfCopies,int threshold){
+	public boolean modifyBook(String authorName,String title,String publisherName,String publicationYear,String sellingPrice,String category,String numOfCopies,String threshold){
 		try {
+			int Isbn = getISBN(title);
 			String str = "update `bookstore`.`book` " +"set title= "+"\"" + title + "\","+
 					"publisherName="+"\"" + publisherName + "\","+
 					"publicationYear="+"\"" + publicationYear + "\","+
@@ -50,8 +51,51 @@ public class ModifyBook {
 	}
 	}
 
+    public String[] getContent(String title){
+		String[] s = new String[8];
+		try{
+			String str = "select * from book where title =\""+title+"\"";
+			PreparedStatement sql = connection.prepareStatement(str);
+			ResultSet resultSet = sql.executeQuery();
+			String authorName = getAuthotorName(title);
+			while (resultSet.next()) {
+				s[0] = resultSet.getString(2);
+				s[1] = authorName;
+				s[2] = resultSet.getString(3);
+				s[3] = resultSet.getString(4);
+				s[4] = resultSet.getString(5);
+				s[5] = resultSet.getString(6);
+				s[6] = resultSet.getString(7);
+				s[7] = resultSet.getString(8);
+			}
 
+		}catch (SQLException e){
+			System.out.println(e.getMessage());
 
+		}
+		return s;
+	}
+    public String getAuthotorName(String title){
+		int isbn = getISBN(title);
+		int authorid = 0;
+		String authorname = "";
+		try {
+			PreparedStatement sql = connection.prepareStatement("Select authorId from book_authors where isbn = " + isbn);
+			ResultSet resultSet = sql.executeQuery();
+			while (resultSet.next()) {
+				authorid = resultSet.getInt(1);
+			}
+			sql = connection.prepareStatement("Select authorName from author where authorId = " + authorid);
+			resultSet = sql.executeQuery();
+			while (resultSet.next()) {
+				authorname = resultSet.getString(1);
+			}
+			return  authorname;
+		}catch (SQLException e){
+			System.out.println(e.getMessage());
+			return "";
+		}
+	}
 
 
 

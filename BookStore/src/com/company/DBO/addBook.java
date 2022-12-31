@@ -12,16 +12,16 @@ public class addBook {
 		connection = DBConnection.createConnection();
 	}
 
-	public boolean add(String authorName,String title,String publisherName,int publicationYear,double sellingPrice,String category,int numOfCopies,int threshold){
+	public boolean add(String authorName,String title,String publisherName,String publicationYear,String sellingPrice,String category,String numOfCopies,String threshold){
 		try {
 			String str = "INSERT INTO `bookstore`.`book` (`title`, `publisherName`, `publicationYear`, `sellingPrice`, `category`, `numOfCopies`, `threshold`) VALUES ("
 					+ "\"" + title + "\","
 					+ "\"" + publisherName + "\","
 					+ "\"" + publicationYear + "\","
-					+ "\"" + sellingPrice + "\","
+					+ "\"" + Double.parseDouble(sellingPrice) + "\","
 					+ "\"" + category + "\","
-					+ "\"" + numOfCopies + "\","
-					+ "\"" + threshold + "\")";
+					+ "\"" + Integer.parseInt(numOfCopies) + "\","
+					+ "\"" + Integer.parseInt(threshold) + "\")";
 			PreparedStatement sql = connection.prepareStatement(str);
 			sql.execute();
 			int isbn = getISBN(title);
