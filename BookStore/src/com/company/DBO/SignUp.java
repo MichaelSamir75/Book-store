@@ -11,16 +11,16 @@ public class SignUp {
         connection = DBConnection.createConnection();
     }
 
-    public Boolean run(String username,String password,String firstName,String lastName,String email,String phone,String shippingAddress){
+    public Boolean run(String values[]){
         try {
             String str = "insert into USER_INFORMATION(userName,password,phone,first_name,last_name,email,Shipping_address) values("
-                    + "\"" + username + "\","
-                    + "\"" + password + "\","
-                    + "\"" + phone + "\","
-                    + "\"" + firstName + "\","
-                    + "\"" + lastName + "\","
-                    + "\"" + email + "\","
-                    + "\"" + shippingAddress + "\")";
+                    + "\"" + values[0] + "\","
+                    + "\"" + values[1] + "\","
+                    + "\"" + values[2] + "\","
+                    + "\"" + values[3] + "\","
+                    + "\"" + values[4] + "\","
+                    + "\"" + values[5] + "\","
+                    + "\"" + values[6] + "\")";
             PreparedStatement sql = connection.prepareStatement(str);
             sql.execute();
             return true;
