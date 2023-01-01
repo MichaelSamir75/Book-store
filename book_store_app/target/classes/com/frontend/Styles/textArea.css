@@ -1,0 +1,4 @@
+.text-area *.content {
+    -fx-background-color: #AEDAF8;
+    -fx-border-radius:10
+}

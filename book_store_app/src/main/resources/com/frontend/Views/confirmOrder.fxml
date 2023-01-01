@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="537.0" prefWidth="678.0" styleClass="root" stylesheets="@../Styles/loginStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frontend.Views.confirmOrdersController">
+    <children>
+        <AnchorPane opacity="0.8" prefHeight="537.0" prefWidth="678.0" style="-fx-background-color: black;">
+            <children>
+                <Button fx:id="next" layoutX="446.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#onNext" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Next" visible="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="backButton" layoutX="255.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#onBack" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Back" visible="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Label fx:id="errorLabel" layoutX="81.0" layoutY="381.0" prefHeight="39.0" prefWidth="526.0" textAlignment="CENTER" visible="false">
+                    <font>
+                        <Font size="22.0" />
+                    </font></Label>
+                <Button fx:id="previous" layoutX="62.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#onPrevious" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Previous" visible="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Label fx:id="orderno1" alignment="CENTER" layoutX="14.0" layoutY="97.0" prefHeight="23.0" prefWidth="135.0" text="Order #" textFill="#ffc983" visible="false">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <AnchorPane fx:id="panel1" layoutX="14.0" layoutY="127.0" prefHeight="61.0" prefWidth="630.0" style="-fx-background-color: FFF1D1;" visible="false">
+                    <children>
+                        <Button fx:id="confirm1" layoutX="520.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#onConfirm1" prefHeight="39.0" prefWidth="96.0" stylesheets="@../Styles/button.css" text="Confirm">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <Label fx:id="manager1" layoutX="22.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Manager :........." textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="book1" layoutX="204.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Book:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="quantity1" layoutX="343.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Quantity:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <Label fx:id="orderno2" alignment="CENTER" layoutX="14.0" layoutY="188.0" prefHeight="23.0" prefWidth="135.0" text="Order #" textFill="#ffc983" visible="false">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <Label fx:id="orderno3" alignment="CENTER" layoutX="14.0" layoutY="279.0" prefHeight="23.0" prefWidth="135.0" text="Order #" textFill="#ffc983" visible="false">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <Label fx:id="orderno4" alignment="CENTER" layoutX="14.0" layoutY="369.0" prefHeight="23.0" prefWidth="135.0" text="Order #" textFill="#ffc983" visible="false">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <AnchorPane fx:id="panel2" layoutX="14.0" layoutY="218.0" prefHeight="61.0" prefWidth="630.0" style="-fx-background-color: FFF1D1;" visible="false">
+                    <children>
+                        <Button fx:id="confirm2" layoutX="520.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#onConfirm2" prefHeight="39.0" prefWidth="96.0" stylesheets="@../Styles/button.css" text="Confirm">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <Label fx:id="manager2" layoutX="22.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Manager :........." textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="book2" layoutX="204.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Book:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="quantity2" layoutX="343.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Quantity:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="panel3" layoutX="14.0" layoutY="309.0" prefHeight="61.0" prefWidth="630.0" style="-fx-background-color: FFF1D1;" visible="false">
+                    <children>
+                        <Button fx:id="confirm3" layoutX="520.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#onConfirm3" prefHeight="39.0" prefWidth="96.0" stylesheets="@../Styles/button.css" text="Confirm">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <Label fx:id="manager3" layoutX="22.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Manager :........." textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="book3" layoutX="204.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Book:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="quantity3" layoutX="343.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Quantity:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="panel4" layoutX="14.0" layoutY="399.0" prefHeight="61.0" prefWidth="630.0" style="-fx-background-color: FFF1D1;" visible="false">
+                    <children>
+                        <Button fx:id="confirm4" layoutX="520.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#onConfirm4" prefHeight="39.0" prefWidth="96.0" stylesheets="@../Styles/button.css" text="Confirm">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <Label fx:id="manager4" layoutX="22.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Manager :........." textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="book4" layoutX="204.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Book:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="quantity4" layoutX="343.0" layoutY="11.0" prefHeight="39.0" prefWidth="149.0" text="Quantity:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="FreeSans Bold" size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <Button fx:id="show" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#onShow" prefHeight="80.0" prefWidth="251.0" stylesheets="@../Styles/button.css" text="SHOW ORDERS">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Label alignment="CENTER" layoutX="214.0" layoutY="24.0" prefHeight="52.0" prefWidth="269.0" text="Confirm Orders" textFill="#ffc983">
+            <font>
+                <Font name="Times New Roman Bold" size="35.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

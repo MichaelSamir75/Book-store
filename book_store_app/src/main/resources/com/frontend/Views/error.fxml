@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="375.0" style="-fx-background-color: black; -fx-border-color: #ffab52; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frontend.Views.loginController">
+   <children>
+      <Line endX="281.9999694824219" endY="1.52587890625E-5" layoutX="96.0" layoutY="72.0" startX="-100.0" stroke="#ffab52" />
+      <ImageView fx:id="errorImage" cache="true" fitHeight="37.0" fitWidth="45.0" layoutX="53.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/error.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="96.0" layoutY="27.0" prefHeight="26.0" prefWidth="92.0" text="ERROR!" textFill="RED">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="15.0" layoutY="81.0" prefHeight="46.0" prefWidth="342.0" text="The provided username and password isn't correct. Click OK to try again." textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="Times New Roman Bold" size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="okButton" alignment="CENTER" layoutX="159.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#onOkButton" prefHeight="26.0" prefWidth="53.0" stylesheets="@../Styles/button.css" text="OK">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
