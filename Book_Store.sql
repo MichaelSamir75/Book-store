@@ -12,12 +12,12 @@ use BOOKSTORE ;
 
 create table BOOK(
 	isbn                int auto_increment,
-    title               varchar(100) NOT NULL,
+    title               varchar(100) unique NOT NULL,
     publisherName       varchar(100) NOT NULL,
-    publicationYear     year NOT NULL,
+    publicationYear     varchar(4) NOT NULL,
     sellingPrice       float NOT NULL ,
     category            varchar(10) NOT NULL,
-    numOfCopies       int NOT NULL CHECK (numOfCopies >= 0) ,
+    numOfCopies       int NOT NULL ,
     threshold           int NOT NULL check (threshold >= 0), 
 	primary key (isbn) , 
 	foreign key (publisherName) references publisher(publisherName) ON UPDATE CASCADE ON DELETE CASCADE
@@ -39,7 +39,7 @@ create table BOOK_AUTHORS(
 
 create table USER_INFORMATION(
   userId     int auto_increment,
-  userName   varchar(100) NOT NULL UNIQUE,
+  userName   varchar(100) NOT NULL,
   password   varchar(50) NOT NULL,
   phone      varchar(11) ,
   first_name varchar(50) NOT NULL,
@@ -80,16 +80,24 @@ create table CREDIT_CARD(
   expiryDate  Date NOT NULL,
   primary key (cardNumber)
 );
-
+/*---------------------------------- Indexing ----------------------------------*/
+create index userIdIndex on user_information(userId);
+create index userEmailIndex on user_information(email);
+create index bookIsbnIndex on book(isbn);
+create index bookTitleIndex on book(title);
+create index bookAuthorIsbnIndex on book_authors(isbn);
+create index authorIdIndex on author(authorId);
+create index authorNameIndex on author(authorName);
+create index userIdOrdersIndex on orders(userId);
+create index isbnOrdersIndex on orders(isbn);
 /*---------------------------------- Triggers ----------------------------------*/
 delimiter $$
-
 create trigger modify_existing_books
  before update on book
  for each row
 begin
     if  new.numOfCopies<0 then
-        SIGNAL SQLSTATE '45000'SET MESSAGE_TEXT = 'Cannot update book bookmodify_existing_booksmodify_existing_bookswith negative number of copies ';
+        SIGNAL SQLSTATE '45000'SET MESSAGE_TEXT = 'Cannot update book with negative number of copies ';
 end if;
 end;$$
 
@@ -98,7 +106,7 @@ after update on book
 for each row
 begin
     if  new.numOfCopies<new.threshold and old.numOfCopies>old.threshold then
-            insert into ORDERS(user_id,isbn,quantity) values ( "0" ,old.isbn,old.threshold);
+            insert into ORDERS(userId,isbn,quantity) values ( "0" ,old.isbn,old.threshold);
     end if;
 end;$$
 
@@ -108,6 +116,4 @@ for each row
 begin
     update book set numOfCopies = numOfCopies + old.quantity where isbn = old.isbn ;
 end;$$
-
-UPDATE `bookstore`.`book` SET `numOfCopies` = '-1' WHERE (`isbn` = '1');
-
+delimiter ;
