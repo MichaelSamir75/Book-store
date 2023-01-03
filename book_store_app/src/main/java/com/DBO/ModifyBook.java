@@ -27,28 +27,22 @@ public class ModifyBook {
 
 			PreparedStatement sql = connection.prepareStatement(str);
 			sql.execute();
-			int authorId = add.getAuthorId(authorName);
-			if(authorId == 0){
-				add.addAuthor(authorName);
-				authorId = add.getAuthorId(authorName);
+			deleteAuthors(Isbn);
+			String[] authors = authorName.split(",");
+			for(int i=0;i<authors.length;i++) {
+				int authorId = getAuthorId(authors[i]);
+				if (authorId == 0) {
+					addAuthor(authors[i]);
+					authorId = getAuthorId(authors[i]);
+				}
+				insertToBook_Author(Isbn, authorId);
 			}
-			modifyAuthorName(Isbn,authorId);
 			return true;
 		}catch (SQLException e){
 			System.out.println(e.getMessage());
 			return false;
 		}
-	}
-	public boolean modifyAuthorName(int isbn,int authorId){
-		try{
-			String str = "update book_authors set authorId= "+"\"" + authorId + "\" where isbn ="+"\"" + isbn + "\"";
-			PreparedStatement sql = connection.prepareStatement(str);
-			sql.execute();
-			return true;
-		}catch (SQLException e){
-			System.out.println(e.getMessage());
-			return false;
-		}
+
 	}
 
 	public boolean isTitle(String title){
@@ -68,13 +62,14 @@ public class ModifyBook {
 			return false;
 		}
 	}
+
 	public String[] getContent(String title){
 		String[] s = null;
 		try{
 			String str = "select * from book where title =\""+title+"\"";
 			PreparedStatement sql = connection.prepareStatement(str);
 			ResultSet resultSet = sql.executeQuery();
-			String authorName = getAuthotorName(title);
+			String authorName = getAuthorsName(title);
 			while (resultSet.next()) {
 				s = new String[8];
 				s[0] = resultSet.getString(2);
@@ -93,30 +88,32 @@ public class ModifyBook {
 		}
 		return s;
 	}
-	public String getAuthotorName(String title){
+
+	public String getAuthorsName(String title){
 		int isbn = getISBN(title);
-		int authorid = 0;
+		int[] authorid = new int[100];
 		String authorname = "";
 		try {
 			PreparedStatement sql = connection.prepareStatement("Select authorId from book_authors where isbn = " + isbn);
 			ResultSet resultSet = sql.executeQuery();
+			int counter = 0;
 			while (resultSet.next()) {
-				authorid = resultSet.getInt(1);
+				authorid[counter] = resultSet.getInt(1);
+				counter++;
 			}
-			sql = connection.prepareStatement("Select authorName from author where authorId = " + authorid);
-			resultSet = sql.executeQuery();
-			while (resultSet.next()) {
-				authorname = resultSet.getString(1);
+			for(int i=0;i<counter;i++) {
+				sql = connection.prepareStatement("Select authorName from author where authorId = " + authorid[i]);
+				resultSet = sql.executeQuery();
+				while (resultSet.next()) {
+					authorname += resultSet.getString(1)+",";
+				}
 			}
-			return  authorname;
+			return  authorname.substring(0,authorname.length()-1);
 		}catch (SQLException e){
 			System.out.println(e.getMessage());
 			return "";
 		}
 	}
-
-
-
 
 	public int getISBN(String title){
 		int isbn =0;
@@ -131,5 +128,57 @@ public class ModifyBook {
 			System.out.println(e.getMessage());
 		}
 		return isbn;
+	}
+
+	public boolean deleteAuthors(int isbn){
+		try {
+			String str = "delete from book_authors where isbn = " + isbn;
+			PreparedStatement sql = connection.prepareStatement(str);
+			sql.execute();
+		}catch (SQLException e){
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return true;
+	}
+
+	public boolean insertToBook_Author(int Isbn,int authorId){
+		try{
+			String str = "Insert into book_authors values ( \"" + Isbn + "\" ,+ \"" +authorId +"\")";
+			PreparedStatement sql = connection.prepareStatement(str);
+			sql.execute();
+			return true;
+		}catch (SQLException e){
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+
+	public int getAuthorId(String authorName){
+		try{
+			String str = "select authorId from author where authorName =(\""+authorName+"\")";
+			PreparedStatement sql = connection.prepareStatement(str);
+			ResultSet resultSet = sql.executeQuery();
+			int authorId = 0;
+			while (resultSet.next()) {
+				authorId = resultSet.getInt(1);
+			}
+			return authorId;
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+
+	public boolean addAuthor(String authorName){
+		try{
+			String str = "Insert into `bookstore`.`author` (`authorName`) values ( \"" + authorName + "\" )";
+			PreparedStatement sql = connection.prepareStatement(str);
+			sql.execute();
+			return true;
+		}catch (SQLException e){
+			System.out.println(e.getMessage());
+			return false;
+		}
 	}
 }

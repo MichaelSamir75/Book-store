@@ -120,7 +120,7 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Label fx:id="validationMessage" layoutX="221.0" layoutY="124.0" prefHeight="31.0" prefWidth="258.0" text="Book modified successfully" textFill="#34ec3a" visible="false">
+            <Label fx:id="validationMessage" layoutX="221.0" layoutY="124.0" prefHeight="31.0" prefWidth="258.0" text="Data updated successfully" textFill="#34ec3a" visible="false">
                <font>
                   <Font size="21.0" />
                </font>
