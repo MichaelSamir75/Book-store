@@ -173,13 +173,6 @@ public class ShoppingCartController {
 
 
     void onShow(MouseEvent event) {
-        // title author publisher year category price quantity
-        String[] boook = {"5", "publisher yara", "author yara","horror", "mariam", "2022", "250", "10"};
-        items.add(boook);
-        String[] bookk = {"2", "publisher yara", "author yara","horror", "mariam", "2022", "250", "30"};
-        items.add(bookk);
-        String[] boaokk = {"7", "mariam yara", "author yara","horror", "mariam", "2022", "250", "10"};
-        items.add(boaokk);
         previous.setVisible(true);
         next.setVisible(true);
         backButton.setVisible(true);

@@ -49,12 +49,12 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="editInfoButton" layoutX="370.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#onEditUserInfo" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit User Info">
+            <Button fx:id="editInfoButton" layoutX="377.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#onEditUserInfo" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit User Info">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="searchButton" layoutX="90.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onSearch" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Search">
+            <Button fx:id="searchButton" layoutX="90.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onSearch" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Library">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>

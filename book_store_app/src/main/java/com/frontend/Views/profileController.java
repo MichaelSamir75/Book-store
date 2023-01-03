@@ -146,7 +146,7 @@ public class profileController {
 
     void profileView() throws IOException {
         Stage profileStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml"))); //"UserHomepage.fxml"
         profileStage.setTitle("Book Store");
         profileStage.setScene(new Scene(root));
         profileStage.show();

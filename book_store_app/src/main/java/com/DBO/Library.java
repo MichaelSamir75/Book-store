@@ -46,7 +46,7 @@ public class Library {
         HashMap<Integer, Book> matchingBooks = new HashMap<>();
         String query = "SELECT * FROM bookstore.BOOK WHERE " + searchAttr + " LIKE ?;";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, searchTerm + "%");
+        statement.setString(1, "%" + searchTerm + "%");
         ResultSet result = statement.executeQuery();
         while(result.next()) {
             int isbn = result.getInt(1);
@@ -72,7 +72,7 @@ public class Library {
                 "JOIN BOOK ON BOOK_AUTHORS.isbn = BOOK.isbn " +
                 "WHERE AUTHOR.authorName LIKE ?;";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, searchTerm + "%");
+        statement.setString(1, "%" + searchTerm + "%");
         ResultSet result = statement.executeQuery();
         while(result.next()) {
             int isbn = result.getInt(1);
