@@ -1,8 +1,11 @@
 package com.DBO;
 
+import java.util.List;
+
 public class Book {
     private int isbn;
     private String title;
+    private List<String> authors;
     private String publisher;
     private String publicationYear;
     private double price;
@@ -10,9 +13,10 @@ public class Book {
     private int numOfCopies;
     private int threshold;
 
-    public Book(int isbn, String title, String publisher, String publicationYear, double price, String category, int numOfCopies, int threshold) {
+    public Book(int isbn, String title, List<String> authors, String publisher, String publicationYear, double price, String category, int numOfCopies, int threshold) {
         this.isbn = isbn;
         this.title = title;
+        this.authors = authors;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
         this.price = price;
@@ -27,6 +31,10 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+    public List<String> getAuthors() {
+        return authors;
     }
 
     public String getPublisher() {

@@ -1,17 +1,18 @@
 package com.DBO;
 
-import com.frontend.Views.CheckoutController;
 import com.frontend.Views.ShoppingCartController;
 
 import java.sql.*;
 
 public class Checkout {
-    private Connection connection;
+    private static Connection connection;
+
     public Checkout() throws SQLException {
         createConnection();
     }
 
     public boolean availableQuantity() throws SQLException {
+        boolean flag = true;
         for (int i = 0; i < ShoppingCartController.items.size(); i++) {
             String[] item = ShoppingCartController.items.get(i);
             String sql = "select numOfCopies from BOOK where isbn = "  + "\"" + item[0] + "\"";
@@ -19,20 +20,29 @@ public class Checkout {
             ResultSet copies = statement.executeQuery();
             copies.next();
             if(Integer.parseInt(item[7]) > copies.getInt("numOfCopies")) {
-                System.out.println("closing");
-                connection.rollback();
-                connection.close();
-                return false;
+                flag = false;
+                if(copies.getInt("numOfCopies") == 0) {
+                    ShoppingCartController.items.remove(i);
+                    i--;
+                }
+                else ShoppingCartController.items.get(i)[7] = String.valueOf(copies.getInt("numOfCopies"));
             }
         }
-        reserveCopies();
-        return true;
+
+        if(flag) {
+            reserveCopies();
+            return true;
+        }
+        System.out.println("closing");
+        connection.rollback();
+        connection.close();
+        return false;
     }
 
     private void createConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/BOOKSTORE?useSSL=false";
         String user = "root";
-        String password = "Scrummy@1";
+        String password = "";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,user,password);
@@ -47,6 +57,7 @@ public class Checkout {
         for (int i = 0; i < ShoppingCartController.items.size(); i++) {
             String[] item = ShoppingCartController.items.get(i);
             String confirm = "update BOOK set numOfCopies = numOfCopies - " + item[7] + " where isbn = " + "\"" + item[0] + "\"";
+            System.out.println("confirm: "+ confirm);
             PreparedStatement update = connection.prepareStatement(confirm);
             update.executeUpdate();
 
@@ -55,13 +66,11 @@ public class Checkout {
             System.out.println("order: "+ order);
             PreparedStatement placeOrder = connection.prepareStatement(order);
             placeOrder.executeUpdate();
-        //    connection.commit();
         }
     }
 
     public boolean validateCredentials(String cardNo, Date expiryDate) throws SQLException {
         String str = "Select expiryDate from CREDIT_CARD where cardNumber = " + cardNo;
-        System.out.println("query: " + str);
         PreparedStatement sql = connection.prepareStatement(str);
         ResultSet resultSet = sql.executeQuery();
         Date cardDate = null;
@@ -71,10 +80,7 @@ public class Checkout {
         if (!expiryDate.equals(cardDate)) {
             return false;
         }
-        System.out.println("ana committing nowwwwwwww");
-
         connection.commit();
-        System.out.println("asasasasa");
         connection.close();
         return true;
     }

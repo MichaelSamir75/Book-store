@@ -1,5 +1,6 @@
 package com.frontend.Views;
 
+import com.DBO.Checkout;
 import com.DBO.Order;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -37,6 +41,8 @@ public class ShoppingCartController {
     @FXML
     private Label book;
     @FXML
+    public Label outOfStock;
+    @FXML
     private Button next;
     @FXML
     private Button delete;
@@ -46,8 +52,7 @@ public class ShoppingCartController {
     private Button backButton;
     @FXML
     private Label item;
-    @FXML
-    private Button show;
+
     @FXML
     private AnchorPane panel1;
     @FXML
@@ -56,14 +61,24 @@ public class ShoppingCartController {
     @FXML
     private Label totalPrice;
 
+    @FXML
+    private TextField quantityText;
+
     int index = 0;
+
 
     void cartView() throws IOException {
         Stage cartStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ShoppingCart.fxml")));
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("ShoppingCart.fxml")
+        );
+        loader.setController(this);
+        Parent root = (Parent) loader.load();
+        outOfStock.setVisible(false);
         cartStage.setTitle("Shopping Cart");
         cartStage.setScene(new Scene(root));
         cartStage.show();
+        onShow(null);
     }
     @FXML
     void onBack(MouseEvent event) throws IOException {
@@ -74,11 +89,13 @@ public class ShoppingCartController {
     }
     @FXML
     void onCheckout(MouseEvent event) throws IOException, SQLException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
+        Stage stage = (Stage) checkout.getScene().getWindow();
         stage.close();
         CheckoutController checkoutController = new CheckoutController();
+        checkoutController.checkout = new Checkout();
         checkoutController.checkoutView();
     }
+
     @FXML
     void onDelete(MouseEvent event) {
         items.remove(index);
@@ -102,10 +119,21 @@ public class ShoppingCartController {
             index = 0;
         showCart();
     }
+    @FXML
+    void quantityOnEnter(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)) {
+            quantityText.requestFocus();
+            items.get(index)[7] = quantityText.getText();
+            showCart();
+        }
+    }
+
     public void showCart(){
         panel1.setVisible(false);
+        updateTotalPrice();
         panel2.setVisible(true);
         item.setVisible(false);
+        outOfStock.setVisible(false);
 
         if(items.size() > 0){
             item.setVisible(true);
@@ -119,25 +147,34 @@ public class ShoppingCartController {
             publisher.setText("Publisher Name: " + items.get(index)[4]);
             year.setText("Publication Year: " + items.get(index)[5]);
             price.setText("Price: " + items.get(index)[6]);
-            quantity.setText("Quantity: " + items.get(index)[7]);
+          //  quantity.setText("Quantity: " + items.get(index)[7]);
+            quantityText.setText(items.get(index)[7]);
+        }
+        else {
+            checkout.setVisible(false);
         }
     }
     void updateTotalPrice() {
-
+        double price = 0;
+        for(int i=0; i<items.size(); i++) {
+            price += (Double.parseDouble(items.get(i)[6]) * Double.parseDouble(items.get(i)[7]));
+        }
+        totalPrice.setText("Total Price: " + price);
     }
-    @FXML
+
+
     void onShow(MouseEvent event) {
         // title author publisher year category price quantity
-        String[] boook = {"5", "publisher yara", "author yara","horror", "mariam", "2022", "26666622", "10"};
+        String[] boook = {"5", "publisher yara", "author yara","horror", "mariam", "2022", "250", "10"};
         items.add(boook);
-        String[] bookk = {"6", "publisher yara", "author yara","horror", "mariam", "2022", "26666622", "10"};
+        String[] bookk = {"2", "publisher yara", "author yara","horror", "mariam", "2022", "250", "30"};
         items.add(bookk);
-        String[] boaokk = {"7", "mariam yara", "author yara","horror", "mariam", "2022", "26666622", "10"};
+        String[] boaokk = {"7", "mariam yara", "author yara","horror", "mariam", "2022", "250", "10"};
         items.add(boaokk);
-        show.setVisible(false);
         previous.setVisible(true);
         next.setVisible(true);
         backButton.setVisible(true);
         showCart();
     }
+
 }
