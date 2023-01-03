@@ -63,4 +63,30 @@ public class Library {
         }
         return matchingBooks;
     }
+
+    public static HashMap<Integer, Book> searchByAuthor(String searchTerm) throws SQLException {
+        Connection connection = DBConnection.createConnection();
+        HashMap<Integer, Book> matchingBooks = new HashMap<>();
+        String query = "SELECT Book.isbn, title, publisherName, publicationYear, sellingPrice, category, numOfCopies, threshold " +
+                "FROM AUTHOR JOIN BOOK_AUTHORS ON AUTHOR.authorId = BOOK_AUTHORS.authorId " +
+                "JOIN BOOK ON BOOK_AUTHORS.isbn = BOOK.isbn " +
+                "WHERE AUTHOR.authorName LIKE ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, searchTerm + "%");
+        ResultSet result = statement.executeQuery();
+        while(result.next()) {
+            int isbn = result.getInt(1);
+            List<String> authors = getBookAuthors(isbn);
+            String title = result.getString(2);
+            String publisher = result.getString(3);
+            String publicationYear = result.getString(4);
+            double price = result.getDouble(5);
+            String category = result.getString(6);
+            int numOfCopies = result.getInt(7);
+            int threshold = result.getInt(8);
+            Book book = new Book(isbn, title, authors, publisher, publicationYear, price, category, numOfCopies, threshold);
+            matchingBooks.put(isbn, book);
+        }
+        return matchingBooks;
+    }
 }

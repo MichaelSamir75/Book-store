@@ -32,10 +32,13 @@
             <ComboBox fx:id="searchBy" layoutX="35.0" layoutY="32.0" prefHeight="38.0" prefWidth="112.0" promptText="Search By">
                <items>
                   <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="ISBN" />
                      <String fx:value="Title" />
-                     <String fx:value="Publisher" />
+                     <String fx:value="Author" />
                      <String fx:value="Category" />
+                     <String fx:value="Publisher" />
                      <String fx:value="Publication Year" />
+                     <String fx:value="Price" />
                   </FXCollections>
                </items>
             </ComboBox>
