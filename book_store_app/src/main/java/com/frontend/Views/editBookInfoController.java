@@ -116,33 +116,57 @@ public class editBookInfoController {
             thresholdTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             thresholdTextField.requestFocus();
         }
+        else {
+            thresholdTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
+        }
         if(numOfCopies.equals("")){
             numOfCopiesTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             numOfCopiesTextField.requestFocus();
+        }
+        else {
+            numOfCopiesTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
         }
         if(category.equals("")){
             categoryTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             categoryTextField.requestFocus();
         }
+        else {
+            categoryTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
+        }
         if(sellingPrice.equals("")){
             sellingPriceTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             sellingPriceTextField.requestFocus();
+        }
+        else {
+            sellingPriceTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
         }
         if(publicationYear.equals("")){
             publicationYearTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             publicationYearTextField.requestFocus();
         }
+        else {
+            publicationYearTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
+        }
         if(publisherName.equals("")){
             publisherNameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             publisherNameTextField.requestFocus();
+        }
+        else {
+            publisherNameTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
         }
         if(authorName.equals("")){
             authorNameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             authorNameTextField.requestFocus();
         }
+        else {
+            authorNameTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
+        }
         if(title.equals("")){
             titleTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             titleTextField.requestFocus();
+        }
+        else {
+            titleTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
         }
         if(!title.equals("") && !authorName.equals("") && !publisherName.equals("") && !publicationYear.equals("") && !sellingPrice.equals("") && !numOfCopies.equals("") && !category.equals("") && !threshold.equals("")){
             ModifyBook modifyBook = new ModifyBook();

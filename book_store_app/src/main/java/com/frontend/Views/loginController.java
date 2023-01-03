@@ -54,10 +54,16 @@ public class loginController {
             passField.requestFocus();
             passField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
         }
+        else{
+            passField.setStyle("-fx-border-color: #462602; -fx-border-width: 0px");
+        }
         if(username.equals("")){
             unValidInputLabel.setVisible(true);
             usernameTextField.requestFocus();
             usernameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+        }
+        else{
+            usernameTextField.setStyle("-fx-border-color: #462602; -fx-border-width: 0px");
         }
         if(!username.equals("") && !pass.equals("")){
             // send to database to check
