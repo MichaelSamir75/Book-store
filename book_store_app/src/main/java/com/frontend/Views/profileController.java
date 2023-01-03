@@ -113,8 +113,10 @@ public class profileController {
     }
 
     @FXML
-    void onSearch(MouseEvent event) {
-
+    void onSearch(MouseEvent event) throws IOException {
+        closeProfileView();
+        LibraryController library = new LibraryController();
+        library.libraryView();
     }
 
     @FXML
