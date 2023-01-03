@@ -24,7 +24,7 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="editDataButton" layoutX="90.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#onEditData" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit book data">
+            <Button fx:id="editDataButton" layoutX="90.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#onEditData" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Update book">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="logOutButton" layoutX="249.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onLogOut" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Log out">
+            <Button fx:id="logOutButton" layoutX="377.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onLogOut" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Log out">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
@@ -55,6 +55,11 @@
                </font>
             </Button>
             <Button fx:id="shopCartButton" layoutX="377.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onShopCart" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Shop Cart">
+               <font>
+                  <Font name="Times New Roman Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="editProfileButton" layoutX="90.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onEditProfile" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit profile">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>

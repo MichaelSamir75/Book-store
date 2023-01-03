@@ -90,37 +90,37 @@ public class addBookController {
         String numOfCopies = numOfCopiesTextField.getText();
         String threshold = thresholdTextField.getText();
 
-        if(title.equals("")){
-            titleTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            titleTextField.requestFocus();
-        }
-        if(authorName.equals("")){
-            authorNameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            authorNameTextField.requestFocus();
-        }
-        if(publisherName.equals("")){
-            publisherNameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            publisherNameTextField.requestFocus();
-        }
-        if(publicationYear.equals("")){
-            publicationYearTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            publicationYearTextField.requestFocus();
-        }
-        if(sellingPrice.equals("")){
-            sellingPriceTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            sellingPriceTextField.requestFocus();
-        }
-        if(category.equals("")){
-            categoryTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            categoryTextField.requestFocus();
+        if(threshold.equals("")){
+            thresholdTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            thresholdTextField.requestFocus();
         }
         if(numOfCopies.equals("")){
             numOfCopiesTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
             numOfCopiesTextField.requestFocus();
         }
-        if(threshold.equals("")){
-            thresholdTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
-            thresholdTextField.requestFocus();
+        if(category.equals("")){
+            categoryTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            categoryTextField.requestFocus();
+        }
+        if(sellingPrice.equals("")){
+            sellingPriceTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            sellingPriceTextField.requestFocus();
+        }
+        if(publicationYear.equals("")){
+            publicationYearTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            publicationYearTextField.requestFocus();
+        }
+        if(publisherName.equals("")){
+            publisherNameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            publisherNameTextField.requestFocus();
+        }
+        if(authorName.equals("")){
+            authorNameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            authorNameTextField.requestFocus();
+        }
+        if(title.equals("")){
+            titleTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+            titleTextField.requestFocus();
         }
         if(!title.equals("") && !authorName.equals("") && !publisherName.equals("") && !publicationYear.equals("") && !sellingPrice.equals("") && !numOfCopies.equals("") && !category.equals("") && !threshold.equals("")){
             addBook addBook = new addBook();

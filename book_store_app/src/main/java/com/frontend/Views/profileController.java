@@ -41,6 +41,9 @@ public class profileController {
     private Button topCustomersButton;
 
     @FXML
+    private Button editProfileButton;
+
+    @FXML
     void onAddBook(MouseEvent event) {
         closeProfileView();
         addBookController addBookController = new addBookController();
@@ -124,6 +127,11 @@ public class profileController {
 
     @FXML
     void onTopCustomers(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onEditProfile(MouseEvent event){
 
     }
 

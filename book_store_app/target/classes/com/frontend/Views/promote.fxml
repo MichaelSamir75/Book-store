@@ -15,24 +15,28 @@
                         <Font name="Times New Roman Bold" size="21.0" />
                     </font>
                 </Label>
-                <Button fx:id="promoteButton" layoutX="255.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#onPromote" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Promote">
+                <Button fx:id="promoteButton" layoutX="394.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#onPromote" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Promote">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="backButton" layoutX="255.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#onBack" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Back">
+                <Button fx:id="backButton" layoutX="94.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#onBack" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Back">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
                 </Button>
-                <Label fx:id="errorLabel" layoutX="81.0" layoutY="381.0" prefHeight="39.0" prefWidth="526.0" textAlignment="CENTER" visible="false">
+                <Label fx:id="errorLabel" alignment="CENTER" layoutX="81.0" layoutY="240.0" prefHeight="39.0" prefWidth="526.0" textAlignment="CENTER" visible="false">
                     <font>
                         <Font size="22.0" />
                     </font></Label>
-                <TextField fx:id="email" layoutX="242.0" layoutY="170.0" prefHeight="39.0" prefWidth="382.0" promptText="enter user email to promote" />
+            <TextField fx:id="email" layoutX="255.0" layoutY="174.0" prefHeight="30.0" prefWidth="370.0" promptText="Enter user email to promote" style="-fx-background-color: #AEDAF8; -fx-background-radius: 10;">
+               <font>
+                  <Font name="Times New Roman Bold" size="14.0" />
+               </font>
+            </TextField>
             </children>
         </AnchorPane>
-        <Label alignment="CENTER" layoutX="214.0" layoutY="24.0" prefHeight="52.0" prefWidth="269.0" text="Promote User" textFill="#ffc983">
+        <Label alignment="CENTER" layoutX="214.0" layoutY="24.0" prefHeight="52.0" prefWidth="269.0" text="Promote user" textFill="#ffc983">
             <font>
                 <Font name="Times New Roman Bold" size="35.0" />
             </font>
