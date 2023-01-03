@@ -1,7 +1,9 @@
 package com.DBO;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Library {
     public static HashMap<Integer, Book> getAllBooks() throws SQLException {
@@ -19,10 +21,24 @@ public class Library {
             String category = result.getString(6);
             int numOfCopies = result.getInt(7);
             int threshold = result.getInt(8);
-            Book book = new Book(isbn, title, publisher, publicationYear, price, category, numOfCopies, threshold);
+            List<String> authors = getBookAuthors(isbn);
+            Book book = new Book(isbn, title, authors, publisher, publicationYear, price, category, numOfCopies, threshold);
             allBooks.put(isbn, book);
         }
         return allBooks;
+    }
+
+    public static List<String> getBookAuthors(int isbn) throws SQLException {
+        Connection connection = DBConnection.createConnection();
+        String query = "SELECT authorName FROM AUTHOR JOIN BOOK_AUTHORS ON AUTHOR.authorId = BOOK_AUTHORS.authorId WHERE BOOK_AUTHORS.isbn = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, isbn);
+        ResultSet result = statement.executeQuery();
+        List<String> authors = new ArrayList<>();
+        while(result.next()) {
+            authors.add(result.getString(1));
+        }
+        return authors;
     }
 
     public static HashMap<Integer, Book> getMatchingBooks(String searchTerm, String searchAttr) throws SQLException {
@@ -41,7 +57,8 @@ public class Library {
             String category = result.getString(6);
             int numOfCopies = result.getInt(7);
             int threshold = result.getInt(8);
-            Book book = new Book(isbn, title, publisher, publicationYear, price, category, numOfCopies, threshold);
+            List<String> authors = getBookAuthors(isbn);
+            Book book = new Book(isbn, title, authors, publisher, publicationYear, price, category, numOfCopies, threshold);
             matchingBooks.put(isbn, book);
         }
         return matchingBooks;

@@ -49,7 +49,9 @@ public class LibraryController implements Initializable {
     }
 
     public VBox createBookCard(Book book) {
+        HBox isbn = createLabelGroup("ISBN:  ", String.valueOf(book.getIsbn()));
         HBox title = createLabelGroup("Title:  ", book.getTitle());
+        HBox authors = createLabelGroup("Authors:  ", concatenateAuthors(book.getAuthors()));
         HBox publisher = createLabelGroup("Publisher:  ", book.getPublisher());
         HBox publicationYear = createLabelGroup("Publication Year:  ", book.getPublicationYear());
         HBox price = createLabelGroup("Price:  ", book.getPrice() + "$");
@@ -64,11 +66,20 @@ public class LibraryController implements Initializable {
         HBox box = new HBox(addToCartBtn);
         box.setAlignment(Pos.BASELINE_CENTER);
 
-        VBox card = new VBox(title, publisher, publicationYear, price, category, box);
+        VBox card = new VBox(isbn, title, authors, publisher, publicationYear, price, category, box);
         card.setStyle("-fx-border-radius: 50px; -fx-border-width: 5px; -fx-border-color: #ffaa4f;");
         card.setPadding(new Insets(20));
 
         return card;
+    }
+
+    private String concatenateAuthors(List<String> authorsList) {
+        StringBuilder authorsString = new StringBuilder();
+        for(int i = 0; i < authorsList.size(); i++) {
+            authorsString.append(authorsList.get(i));
+            if(i < authorsList.size()-1) authorsString.append(", ");
+        }
+        return authorsString.toString();
     }
 
     HBox createLabelGroup(String key, String value) {
@@ -117,12 +128,14 @@ public class LibraryController implements Initializable {
     }
 
     public void addToCart(MouseEvent mouseEvent) {
-        String id = ((Button) mouseEvent.getSource()).getId();
+        error.setVisible(false);
+        Button btn = (Button) mouseEvent.getSource();
+        String id = btn.getId();
         int isbn = Integer.parseInt(id);
         Book addedBook = shownBooks.get(isbn);
         String[] bookInfo =
                 new String[] {String.valueOf(addedBook.getIsbn()),
-                addedBook.getTitle(), "", addedBook.getCategory(), addedBook.getPublisher(),
+                addedBook.getTitle(), concatenateAuthors(addedBook.getAuthors()), addedBook.getCategory(), addedBook.getPublisher(),
                 addedBook.getPublicationYear(), String.valueOf(addedBook.getPrice()), "1"};
         ShoppingCartController.items.add(bookInfo);
     }
