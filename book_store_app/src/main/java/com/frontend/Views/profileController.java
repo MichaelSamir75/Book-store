@@ -81,6 +81,7 @@ public class profileController {
         closeProfileView();
         loginController loginController = new loginController();
         try {
+            ShoppingCartController.items.clear();
             loginController.loginView();
         }
         catch (Exception e){
