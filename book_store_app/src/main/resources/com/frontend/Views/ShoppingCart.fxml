@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="537.0" prefWidth="678.0" styleClass="root" stylesheets="@../Styles/loginStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frontend.Views.ShoppingCartController">
+    <children>
+        <AnchorPane opacity="0.8" prefHeight="537.0" prefWidth="678.0" style="-fx-background-color: black;">
+            <children>
+                <AnchorPane id="panel3" fx:id="panel2" layoutX="14.0" layoutY="399.0" prefHeight="61.0" prefWidth="630.0" visible="false">
+                    <children>
+                        <Button id="checkout" fx:id="checkout" layoutX="499.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#onCheckout" prefHeight="39.0" prefWidth="117.0" stylesheets="@../Styles/button.css" text="Checkout">
+                            <font>
+                                <Font name="Times New Roman Bold" size="18.0" />
+                            </font>
+                        </Button>
+                        <Label id="totalpricelabel" fx:id="totalPrice" layoutX="22.0" layoutY="11.0" prefHeight="39.0" prefWidth="492.0" text="Total Price:" textFill="#ffc983" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="Times New Roman Bold" size="25.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <Button fx:id="next" layoutX="446.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#onNext" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Next" visible="true">
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="backButton" layoutX="255.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#onBack" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Back" visible="true">
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="previous" layoutX="62.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#onPrevious" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Previous" visible="true">
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Label fx:id="item" alignment="CENTER" layoutX="14.0" layoutY="97.0" prefHeight="23.0" prefWidth="135.0" text="Item #" textFill="#ffc983" visible="false">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <AnchorPane id="panel1" fx:id="panel1" layoutX="14.0" layoutY="128.0" prefHeight="270.0" prefWidth="630.0" style="-fx-background-color: FFF1D1;" visible="false">
+                    <children>
+                        <Label id="titlelabel1" fx:id="book" layoutX="22.0" layoutY="44.0" prefHeight="39.0" prefWidth="598.0" text="Book Title:" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="Times New Roman Bold" size="22.0" />
+                            </font>
+                        </Label>
+                  <Label fx:id="author" layoutX="22.0" layoutY="75.0" prefHeight="39.0" prefWidth="492.0" text="Author Name:" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="category" layoutX="22.0" layoutY="104.0" prefHeight="39.0" prefWidth="597.0" text="Category:" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Button id="delete1" fx:id="delete" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onDelete" prefHeight="40.0" prefWidth="96.0" stylesheets="@../Styles/button.css" text="Delete">
+                     <font>
+                        <Font name="Times New Roman Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="publisher" layoutX="22.0" layoutY="134.0" prefHeight="39.0" prefWidth="598.0" text="Publisher Name:" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="year" layoutX="22.0" layoutY="165.0" prefHeight="39.0" prefWidth="598.0" text="Publication Year:" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="quantity" layoutX="21.0" layoutY="227.0" prefHeight="39.0" prefWidth="598.0" text="Quantity:" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="price" layoutX="23.0" layoutY="197.0" prefHeight="39.0" prefWidth="598.0" text="Price:" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="isbn" layoutX="23.0" layoutY="14.0" prefHeight="39.0" prefWidth="492.0" text="ISBN: " textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+                <Button fx:id="show" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#onShow" prefHeight="80.0" prefWidth="251.0" stylesheets="@../Styles/button.css" text="SHOW CART">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Label alignment="CENTER" layoutX="214.0" layoutY="24.0" prefHeight="52.0" prefWidth="269.0" text="Shopping Cart" textFill="#ffc983">
+            <font>
+                <Font name="Times New Roman Bold" size="35.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

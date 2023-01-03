@@ -118,7 +118,11 @@ public class profileController {
     }
 
     @FXML
-    void onShopCart(MouseEvent event) {
+    void onShopCart(MouseEvent event) throws IOException {
+        closeProfileView();
+        ShoppingCartController cart = new ShoppingCartController();
+        cart.cartView();
+
 
     }
 
