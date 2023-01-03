@@ -5,13 +5,11 @@ import com.DBO.Library;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -28,11 +26,13 @@ public class LibraryController implements Initializable {
     public TextField searchBar;
     public ComboBox<String> searchBy;
     public Button searchBtn;
-    public GridPane grid;
+    public VBox list;
     public Button backBtn;
+    public ScrollPane pane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        pane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         try {
             HashMap<Integer, Book> allBooks = Library.getAllBooks();
             showBooks(allBooks);
@@ -42,34 +42,42 @@ public class LibraryController implements Initializable {
     }
 
     public void showBooks(HashMap<Integer, Book> books) {
-        grid.getChildren().clear();
-        int row = 0, col = 0;
+        list.getChildren().clear();
         for(Map.Entry<Integer, Book> entry : books.entrySet()) {
-            if(col == 3) {
-                row++;
-                col = 0;
-            }
             VBox card = createBookCard(entry.getValue());
-            grid.add(card, col, row);
-            col++;
+            list.getChildren().add(card);
         }
     }
 
     public VBox createBookCard(Book book) {
-        Label titleLabel = new Label("Title: " + book.getTitle());
-        Label publisherLabel = new Label("Publisher: " + book.getPublisher());
-        Label publicationYearLabel = new Label("Publication Year: " + book.getPublicationYear());
-        Label priceLabel = new Label("Price: " + book.getPrice() + "$");
-        Label categoryLabel = new Label("Category: " + book.getCategory());
+        HBox title = createLabelGroup("Title:  ", book.getTitle());
+        HBox publisher = createLabelGroup("Publisher:  ", book.getPublisher());
+        HBox publicationYear = createLabelGroup("Publication Year:  ", book.getPublicationYear());
+        HBox price = createLabelGroup("Price:  ", book.getPrice() + "$");
+        HBox category = createLabelGroup("Category:  ", book.getCategory());
 
-        setStyle(titleLabel, publisherLabel, publicationYearLabel, priceLabel, categoryLabel);
-        return new VBox(titleLabel, publisherLabel, publicationYearLabel, priceLabel, categoryLabel);
+        Button addToCartBtn = new Button();
+        addToCartBtn.setText("Add To Cart");
+        addToCartBtn.setStyle("-fx-background-color: #e81034; -fx-background-radius : 10;");
+
+        HBox box = new HBox(addToCartBtn);
+        box.setAlignment(Pos.BASELINE_CENTER);
+
+        VBox card = new VBox(title, publisher, publicationYear, price, category, box);
+        card.setStyle("-fx-border-radius: 50px; -fx-border-width: 5px; -fx-border-color: #ffaa4f;");
+        card.setPadding(new Insets(20));
+
+        return card;
     }
 
-    void setStyle(Node... nodes) {
-        for(Node node : nodes) {
-            node.setStyle("-fx-font-size: 20; -fx-text-background-color: white");
-        }
+    HBox createLabelGroup(String key, String value) {
+        Label keyLabel = new Label(key);
+        Label valueLabel = new Label(value);
+
+        keyLabel.setStyle("-fx-font-size: 20; -fx-text-background-color: yellow");
+        valueLabel.setStyle("-fx-font-size: 20; -fx-text-background-color: white");
+
+        return new HBox(keyLabel, valueLabel);
     }
 
     void libraryView() throws IOException {
@@ -95,12 +103,15 @@ public class LibraryController implements Initializable {
         showBooks(matchingBooks);
     }
     
-    public void onBack(MouseEvent mouseEvent) {
-        
+    public void onBack(MouseEvent mouseEvent) throws IOException {
+        closeSearchView();
+        profileController controller = new profileController();
+        controller.profileView();
     }
     
     public void closeSearchView() {
-        
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.close();
     }
 
 }
