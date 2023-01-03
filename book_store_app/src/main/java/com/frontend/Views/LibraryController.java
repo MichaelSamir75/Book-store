@@ -2,19 +2,16 @@ package com.frontend.Views;
 
 import com.DBO.Book;
 import com.DBO.Library;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,16 +26,18 @@ public class LibraryController implements Initializable {
     public VBox list;
     public Button backBtn;
     public ScrollPane pane;
+    public Label error;
+    HashMap<Integer, Book> shownBooks;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         try {
-            HashMap<Integer, Book> allBooks = Library.getAllBooks();
-            showBooks(allBooks);
+            shownBooks = Library.getAllBooks();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        showBooks(shownBooks);
     }
 
     public void showBooks(HashMap<Integer, Book> books) {
@@ -58,6 +57,8 @@ public class LibraryController implements Initializable {
 
         Button addToCartBtn = new Button();
         addToCartBtn.setText("Add To Cart");
+        addToCartBtn.setId(String.valueOf(book.getIsbn()));
+        addToCartBtn.setOnMouseClicked(this::addToCart);
         addToCartBtn.setStyle("-fx-background-color: #e81034; -fx-background-radius : 10;");
 
         HBox box = new HBox(addToCartBtn);
@@ -92,15 +93,16 @@ public class LibraryController implements Initializable {
         String searchTerm = searchBar.getText();
         String searchAttr = searchBy.getValue();
         if(searchAttr == null) {
-            System.out.println("ERROR");
+            error.setVisible(true);
             return;
         }
-        else if(searchAttr.equals("Title")) searchAttr = "title";
+        error.setVisible(false);
+        if(searchAttr.equals("Title")) searchAttr = "title";
         else if(searchAttr.equals("Publisher")) searchAttr = "publisherName";
         else if(searchAttr.equals("Publication Year")) searchAttr = "publicationYear";
         else if(searchAttr.equals("Category")) searchAttr = "category";
-        HashMap<Integer, Book> matchingBooks = Library.getMatchingBooks(searchTerm, searchAttr);
-        showBooks(matchingBooks);
+        shownBooks = Library.getMatchingBooks(searchTerm, searchAttr);
+        showBooks(shownBooks);
     }
     
     public void onBack(MouseEvent mouseEvent) throws IOException {
@@ -112,6 +114,17 @@ public class LibraryController implements Initializable {
     public void closeSearchView() {
         Stage stage = (Stage) backBtn.getScene().getWindow();
         stage.close();
+    }
+
+    public void addToCart(MouseEvent mouseEvent) {
+        String id = ((Button) mouseEvent.getSource()).getId();
+        int isbn = Integer.parseInt(id);
+        Book addedBook = shownBooks.get(isbn);
+        String[] bookInfo =
+                new String[] {String.valueOf(addedBook.getIsbn()),
+                addedBook.getTitle(), "", addedBook.getCategory(), addedBook.getPublisher(),
+                addedBook.getPublicationYear(), String.valueOf(addedBook.getPrice()), "1"};
+        ShoppingCartController.items.add(bookInfo);
     }
 
 }
