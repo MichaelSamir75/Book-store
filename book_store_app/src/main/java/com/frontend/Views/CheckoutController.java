@@ -38,24 +38,26 @@ public class CheckoutController {
     @FXML
     private Label invalid;
 
-    Checkout checkout;
-    public CheckoutController() throws SQLException {
-        checkout = new Checkout();
-    }
+    public static Checkout checkout;
 
     @FXML
     public void onConfirm(MouseEvent mouseEvent) throws SQLException {
         invalid.setVisible(false);
         valid.setVisible(false);
-        boolean check = checkout.validateCredentials(cardNoText.getText(),
-                Date.valueOf(expiryDateText.getText()));
-        if(check) {
-            valid.setVisible(true);
-            confirm.setVisible(false);
-            ShoppingCartController.items.clear();
-        }
-        else
+        String cardNo = cardNoText.getText();
+        if(cardNo.equals("") || expiryDateText.getText().equals("")) {
             invalid.setVisible(true);
+        }
+        else {
+            boolean check = checkout.validateCredentials(cardNoText.getText(),
+                    Date.valueOf(expiryDateText.getText()));
+            if (check) {
+                valid.setVisible(true);
+                confirm.setVisible(false);
+                ShoppingCartController.items.clear();
+            } else
+                invalid.setVisible(true);
+        }
     }
     @FXML
     public void onBack(MouseEvent mouseEvent) throws IOException, SQLException {
@@ -76,6 +78,7 @@ public class CheckoutController {
         else {
             ShoppingCartController shoppingCartController = new ShoppingCartController();
             shoppingCartController.cartView();
+            shoppingCartController.outOfStock.setVisible(true);
         }
     }
     @FXML
