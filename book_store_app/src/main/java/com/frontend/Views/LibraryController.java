@@ -25,22 +25,26 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class LibraryController implements Initializable {
-
-    HashMap<Integer, Book> allBooks;
     public TextField searchBar;
     public ComboBox<String> searchBy;
     public Button searchBtn;
     public GridPane grid;
+    public Button backBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            allBooks = Library.getAllBooks();
+            HashMap<Integer, Book> allBooks = Library.getAllBooks();
+            showBooks(allBooks);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void showBooks(HashMap<Integer, Book> books) {
+        grid.getChildren().clear();
         int row = 0, col = 0;
-        for(Map.Entry<Integer, Book> entry : allBooks.entrySet()) {
+        for(Map.Entry<Integer, Book> entry : books.entrySet()) {
             if(col == 3) {
                 row++;
                 col = 0;
@@ -76,8 +80,27 @@ public class LibraryController implements Initializable {
         libraryStage.show();
     }
 
-    public void onSearch(MouseEvent mouseEvent) {
-        System.out.println("Search");
+    public void onSearch(MouseEvent mouseEvent) throws SQLException {
+        String searchTerm = searchBar.getText();
+        String searchAttr = searchBy.getValue();
+        if(searchAttr == null) {
+            System.out.println("ERROR");
+            return;
+        }
+        else if(searchAttr.equals("Title")) searchAttr = "title";
+        else if(searchAttr.equals("Publisher")) searchAttr = "publisherName";
+        else if(searchAttr.equals("Publication Year")) searchAttr = "publicationYear";
+        else if(searchAttr.equals("Category")) searchAttr = "category";
+        HashMap<Integer, Book> matchingBooks = Library.getMatchingBooks(searchTerm, searchAttr);
+        showBooks(matchingBooks);
+    }
+    
+    public void onBack(MouseEvent mouseEvent) {
+        
+    }
+    
+    public void closeSearchView() {
+        
     }
 
 }
