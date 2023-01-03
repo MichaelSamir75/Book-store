@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -72,10 +73,11 @@ public class ShoppingCartController {
         profileController.profileView();
     }
     @FXML
-    void onCheckout(MouseEvent event) throws IOException {
+    void onCheckout(MouseEvent event) throws IOException, SQLException {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
-        CheckoutController.checkoutView();
+        CheckoutController checkoutController = new CheckoutController();
+        checkoutController.checkoutView();
     }
     @FXML
     void onDelete(MouseEvent event) {
@@ -126,11 +128,11 @@ public class ShoppingCartController {
     @FXML
     void onShow(MouseEvent event) {
         // title author publisher year category price quantity
-        String[] boook = {"1", "publisher yara", "author yara","horror", "mariam", "2022", "26666622", "2000"};
+        String[] boook = {"5", "publisher yara", "author yara","horror", "mariam", "2022", "26666622", "10"};
         items.add(boook);
-        String[] bookk = {"2", "publisher yara", "author yara","horror", "mariam", "2022", "26666622", "2000"};
+        String[] bookk = {"6", "publisher yara", "author yara","horror", "mariam", "2022", "26666622", "10"};
         items.add(bookk);
-        String[] boaokk = {"3", "mariam yara", "author yara","horror", "mariam", "2022", "26666622", "2000"};
+        String[] boaokk = {"7", "mariam yara", "author yara","horror", "mariam", "2022", "26666622", "10"};
         items.add(boaokk);
         show.setVisible(false);
         previous.setVisible(true);
