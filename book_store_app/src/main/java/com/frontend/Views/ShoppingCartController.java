@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -57,6 +60,9 @@ public class ShoppingCartController {
 
     @FXML
     private Label totalPrice;
+
+    @FXML
+    private TextField quantityText;
 
     int index = 0;
 
@@ -113,6 +119,15 @@ public class ShoppingCartController {
             index = 0;
         showCart();
     }
+    @FXML
+    void quantityOnEnter(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)) {
+            quantityText.requestFocus();
+            items.get(index)[7] = quantityText.getText();
+            showCart();
+        }
+    }
+
     public void showCart(){
         panel1.setVisible(false);
         updateTotalPrice();
@@ -132,7 +147,8 @@ public class ShoppingCartController {
             publisher.setText("Publisher Name: " + items.get(index)[4]);
             year.setText("Publication Year: " + items.get(index)[5]);
             price.setText("Price: " + items.get(index)[6]);
-            quantity.setText("Quantity: " + items.get(index)[7]);
+          //  quantity.setText("Quantity: " + items.get(index)[7]);
+            quantityText.setText(items.get(index)[7]);
         }
         else {
             checkout.setVisible(false);
