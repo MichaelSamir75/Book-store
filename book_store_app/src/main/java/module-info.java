@@ -3,7 +3,7 @@ module com.frontend.book_store_front {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;
-    requires mysql.connector.java;
+    requires mysql.connector.j;
     requires jasperreports;
 
 
