@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class profileController {
@@ -39,6 +40,8 @@ public class profileController {
 
     @FXML
     private Button topCustomersButton;
+
+    @FXML Button editInfoButton ;
 
     @FXML
     void onAddBook(MouseEvent event) {
@@ -74,6 +77,13 @@ public class profileController {
         catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    @FXML
+    void onEditUserInfo(MouseEvent event) throws SQLException, IOException {
+        closeProfileView();
+        editInfoController el = new editInfoController();
+        el.editInfoView() ;
     }
 
     @FXML
