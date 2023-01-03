@@ -95,7 +95,7 @@ public class editInfoController {
 
     @FXML
     void onChangePasswordButton(MouseEvent event) throws IOException {
-        changePass() ;
+        closeEditView() ;
         new changePasswordController().editPasswordView() ;
     }
 
