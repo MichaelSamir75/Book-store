@@ -123,6 +123,15 @@ public class ShoppingCartController {
     void quantityOnEnter(KeyEvent event) {
         if(event.getCode().equals(KeyCode.ENTER)) {
             quantityText.requestFocus();
+            try{
+                int q = Integer.parseInt(quantityText.getText());
+                if(q < 1){
+                    quantityText.setText("1");
+                }
+            }
+            catch (NumberFormatException nfe){
+                quantityText.setText("1");
+            }
             items.get(index)[7] = quantityText.getText();
             showCart();
         }
