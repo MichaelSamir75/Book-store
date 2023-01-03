@@ -61,7 +61,8 @@ public class LibraryController implements Initializable {
         addToCartBtn.setText("Add To Cart");
         addToCartBtn.setId(String.valueOf(book.getIsbn()));
         addToCartBtn.setOnMouseClicked(this::addToCart);
-        addToCartBtn.setStyle("-fx-background-color: #e81034; -fx-background-radius : 10;");
+        if(isInCart(book.getIsbn())) addToCartBtn.setDisable(true);
+        addToCartBtn.setStyle("-fx-background-color: #f5ca0c; -fx-background-radius : 10; -fx-font-size: 17;");
 
         HBox box = new HBox(addToCartBtn);
         box.setAlignment(Pos.BASELINE_CENTER);
@@ -128,9 +129,17 @@ public class LibraryController implements Initializable {
         stage.close();
     }
 
+    public boolean isInCart(int isbn) {
+        for(String[] item : ShoppingCartController.items) {
+            if(isbn == Integer.parseInt(item[0])) return true;
+        }
+        return false;
+    }
+
     public void addToCart(MouseEvent mouseEvent) {
         error.setVisible(false);
         Button btn = (Button) mouseEvent.getSource();
+        btn.setDisable(true);
         String id = btn.getId();
         int isbn = Integer.parseInt(id);
         Book addedBook = shownBooks.get(isbn);
