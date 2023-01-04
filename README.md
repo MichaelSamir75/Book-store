@@ -36,4 +36,4 @@ There are 2 types of users in our app, stores managers and customers.
 
 ## Screenshots:
 ### Sign in
-![Sign in](https://github.com/MichaelSamir75/Book-store/edit/main/ScreenShots/SSignIN.png "sign in")
+![Sign in](https://github.com/MichaelSamir75/Book-store/edit/main/ScreenShots/SignIN.png "sign in")
