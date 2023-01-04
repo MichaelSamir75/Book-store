@@ -11,19 +11,14 @@ public class Order {
     public Order() {
         connection = DBConnection.createConnection();
     }
-    public boolean placeOrder(String bookName , String q , String mangerEmail){
-      int id=0 ;
+    public boolean placeOrder(String bookName , String q){
+      int id=SignIn.userID ;
       int isbn =0; int quantity = Integer.parseInt(q);
       try {
           PreparedStatement sql = connection.prepareStatement("Select isbn from BOOK where title = " + "\"" + bookName + "\"");
           ResultSet resultSet = sql.executeQuery();
           while (resultSet.next()) {
               isbn=resultSet.getInt(1);
-          }
-          PreparedStatement sql2 = connection.prepareStatement("Select userId from USER_INFORMATION where email = " + "\"" + mangerEmail + "\"");
-          ResultSet resultSet2 = sql2.executeQuery();
-          while (resultSet2.next()) {
-              id=resultSet2.getInt(1);
           }
       }catch (Exception e){
          System.out.println(e.getMessage());

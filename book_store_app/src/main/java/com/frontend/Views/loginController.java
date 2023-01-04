@@ -54,17 +54,22 @@ public class loginController {
             passField.requestFocus();
             passField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
         }
+        else{
+            passField.setStyle("-fx-border-color: #462602; -fx-border-width: 0px");
+        }
         if(username.equals("")){
             unValidInputLabel.setVisible(true);
             usernameTextField.requestFocus();
             usernameTextField.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color: #AEDAF8");
+        }
+        else{
+            usernameTextField.setStyle("-fx-border-color: #462602; -fx-border-width: 0px");
         }
         if(!username.equals("") && !pass.equals("")){
             // send to database to check
             SignIn signIn = new SignIn();
             if(signIn.run(username,pass)) {
                 closeLoginView();
-                writeEmailToFile(username);
                 new profileController().profileView();
             }
             else {
@@ -133,34 +138,5 @@ public class loginController {
         stage.close();
         loginView();
     }
-
-    private void writeEmailToFile(String email){
-        try {
-            FileWriter myWriter = new FileWriter("emailInfo");
-            myWriter.write(email);
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
-    void errorView() throws IOException {
-        Stage errorStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("error.fxml")));
-        errorStage.setTitle("ERROR!");
-        errorStage.setScene(new Scene(root));
-        errorStage.setResizable(false);
-        errorStage.show();
-    }
-
-    void showAlert(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("ERROR!");
-        alert.setContentText("Please enter valid username and password");
-        alert.showAndWait();
-
-    }
-
-
 
 }

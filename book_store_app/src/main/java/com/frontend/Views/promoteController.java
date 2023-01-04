@@ -50,11 +50,11 @@ public class promoteController {
         }else{
             if(p.promote(email.getText())){
                 errorLabel.setVisible(true);
-                errorLabel.setText("User Promoted Successfully...");
-                errorLabel.setStyle("-fx-text-fill: green");
+                errorLabel.setText("User promoted successfully");
+                errorLabel.setStyle("-fx-text-fill: #34ec3a");
             }else{
                 errorLabel.setVisible(true);
-                errorLabel.setText("User Not Found...");
+                errorLabel.setText("User not found");
                 errorLabel.setStyle("-fx-text-fill: red");
             }
         }

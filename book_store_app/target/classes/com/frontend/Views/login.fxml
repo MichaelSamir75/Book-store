@@ -47,7 +47,7 @@
                   </Text>
                   <Line endX="-24.79998779296875" fill="BLACK" layoutX="159.0" layoutY="249.0" startX="-100.0" stroke="#ffab52" strokeWidth="3.0" />
                   <Line endX="-28.79998779296875" fill="BLACK" layoutX="286.0" layoutY="250.0" startX="-112.60003662109375" stroke="#ffab52" strokeWidth="3.0" />
-                  <Label fx:id="unValidInputLabel" alignment="CENTER" layoutX="194.0" layoutY="195.0" prefHeight="18.0" prefWidth="97.0" text="*Unavlid input*" textFill="RED" visible="false">
+                  <Label fx:id="unValidInputLabel" alignment="CENTER" layoutX="194.0" layoutY="195.0" prefHeight="18.0" prefWidth="97.0" text="*Inavlid input*" textFill="RED" visible="false">
                      <font>
                         <Font name="Times New Roman Bold" size="12.0" />
                      </font>

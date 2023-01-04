@@ -19,7 +19,7 @@
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="editInfoButton" layoutX="224.0" layoutY="329.0" mnemonicParsing="false" onMouseClicked="#onEditUserInfo" prefHeight="46.0" prefWidth="242.0" stylesheets="@../Styles/button.css" text="Edit User Info">
+                <Button fx:id="editProfileButton" layoutX="224.0" layoutY="329.0" mnemonicParsing="false" onMouseClicked="#onEditProfile" prefHeight="46.0" prefWidth="242.0" stylesheets="@../Styles/button.css" text="Edit User Info">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>

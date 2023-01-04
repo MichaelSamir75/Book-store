@@ -89,7 +89,7 @@ public class placeOrderController {
 
         if(!title.equals("") && !quantity.equals("")){
             Order order = new Order();
-            if(order.placeOrder(title,quantity,readEmailInfo())){
+            if(order.placeOrder(title,quantity)){
                 titleTextField.requestFocus();
                 titleTextField.setText("");
                 titleTextField.setStyle("-fx-background-radius: 15; -fx-background-color: #AEDAF8");
@@ -120,21 +120,6 @@ public class placeOrderController {
     public void closePlaceOrderView(){
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
-    }
-
-    private String readEmailInfo(){
-        String email = "";
-        try {
-            File myObj = new File("emailInfo");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                email = myReader.nextLine();
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
-        return email;
     }
 
 }

@@ -122,20 +122,6 @@ public class editInfoController {
         address.setText(info[4]) ;
     }
 
-    private String readEmailInfo(){
-        String email = "";
-        try {
-            File myObj = new File("emailInfo");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                email = myReader.nextLine();
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
-        return email;
-    }
     @FXML
      void editInfoView() throws IOException, SQLException {
         Stage stage = new Stage() ;

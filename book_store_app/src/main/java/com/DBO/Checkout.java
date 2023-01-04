@@ -42,7 +42,7 @@ public class Checkout {
     private void createConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/BOOKSTORE?useSSL=false";
         String user = "root";
-        String password = "";
+        String password = "TIGER";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,user,password);
@@ -57,13 +57,14 @@ public class Checkout {
         for (int i = 0; i < ShoppingCartController.items.size(); i++) {
             String[] item = ShoppingCartController.items.get(i);
             String confirm = "update BOOK set numOfCopies = numOfCopies - " + item[7] + " where isbn = " + "\"" + item[0] + "\"";
-            System.out.println("confirm: "+ confirm);
+//            System.out.println("confirm: "+ confirm);
             PreparedStatement update = connection.prepareStatement(confirm);
             update.executeUpdate();
 
-            String order = "insert into SELLING_ORDERS values(null, " +  SignIn.userID + ", " + item[0] +
+            String order = "insert into SELLING_ORDERS(userId,isbn,quantity,date)" +
+                    " values(" +  SignIn.userID + ", " + item[0] +
                     ", " + item[7] + ", current_date())";
-            System.out.println("order: "+ order);
+//            System.out.println("order: "+ order);
             PreparedStatement placeOrder = connection.prepareStatement(order);
             placeOrder.executeUpdate();
         }

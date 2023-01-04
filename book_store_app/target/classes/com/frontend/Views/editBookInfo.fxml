@@ -15,7 +15,7 @@
                   <Font name="Times New Roman Bold" size="19.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="204.0" layoutY="14.0" prefHeight="52.0" prefWidth="269.0" text="Edit book data" textFill="#ffc983">
+            <Label alignment="CENTER" layoutX="204.0" layoutY="14.0" prefHeight="52.0" prefWidth="269.0" text="Update book" textFill="#ffc983">
                <font>
                   <Font name="Times New Roman Bold" size="35.0" />
                </font>
@@ -115,12 +115,12 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="confirmButton" layoutX="432.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#onConfirm" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Confirm" visible="false">
+            <Button fx:id="confirmButton" layoutX="432.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#onConfirm" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Update" visible="false">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Label fx:id="validationMessage" layoutX="221.0" layoutY="124.0" prefHeight="31.0" prefWidth="258.0" text="Book modified successfully" textFill="#34ec3a" visible="false">
+            <Label fx:id="validationMessage" layoutX="221.0" layoutY="124.0" prefHeight="31.0" prefWidth="258.0" text="Data updated successfully" textFill="#34ec3a" visible="false">
                <font>
                   <Font size="21.0" />
                </font>
