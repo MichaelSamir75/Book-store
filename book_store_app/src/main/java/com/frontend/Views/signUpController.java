@@ -52,9 +52,9 @@ public class signUpController {
     private Label welcomeLabel;
     @FXML
     void onLoginButton(MouseEvent event) throws IOException {
-        closeSignUpView() ;
-        loginController loginController = new loginController() ;
-        loginController.loginView() ;
+        closeSignUpView();
+        loginController loginController = new loginController();
+        loginController.loginView();
     }
 
     @FXML

@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class profileController {
@@ -40,8 +39,6 @@ public class profileController {
 
     @FXML
     private Button topCustomersButton;
-
-    @FXML Button editInfoButton ;
 
     @FXML
     void onAddBook(MouseEvent event) {
@@ -80,18 +77,10 @@ public class profileController {
     }
 
     @FXML
-    void onEditUserInfo(MouseEvent event) throws SQLException, IOException {
-        closeProfileView();
-        editInfoController el = new editInfoController();
-        el.editInfoView() ;
-    }
-
-    @FXML
     void onLogOut(MouseEvent event) {
         closeProfileView();
         loginController loginController = new loginController();
         try {
-            ShoppingCartController.items.clear();
             loginController.loginView();
         }
         catch (Exception e){
@@ -124,18 +113,12 @@ public class profileController {
     }
 
     @FXML
-    void onSearch(MouseEvent event) throws IOException {
-        closeProfileView();
-        LibraryController library = new LibraryController();
-        library.libraryView();
+    void onSearch(MouseEvent event) {
+
     }
 
     @FXML
-    void onShopCart(MouseEvent event) throws IOException {
-        closeProfileView();
-        ShoppingCartController cart = new ShoppingCartController();
-        cart.cartView();
-
+    void onShopCart(MouseEvent event) {
 
     }
 
@@ -146,7 +129,7 @@ public class profileController {
 
     void profileView() throws IOException {
         Stage profileStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml"))); //"UserHomepage.fxml"
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml")));
         profileStage.setTitle("Book Store");
         profileStage.setScene(new Scene(root));
         profileStage.show();

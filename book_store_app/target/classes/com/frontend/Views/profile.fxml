@@ -44,22 +44,17 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="logOutButton" layoutX="90.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#onLogOut" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Log out">
+            <Button fx:id="logOutButton" layoutX="249.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onLogOut" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Log out">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="editInfoButton" layoutX="377.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#onEditUserInfo" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit User Info">
+            <Button fx:id="searchButton" layoutX="90.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onSearch" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Search">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="searchButton" layoutX="90.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onSearch" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Library">
-               <font>
-                  <Font name="Times New Roman Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="shopCartButton" layoutX="377.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onShopCart" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Shopping Cart">
+            <Button fx:id="shopCartButton" layoutX="377.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onShopCart" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Shop Cart">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
