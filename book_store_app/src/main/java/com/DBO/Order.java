@@ -30,7 +30,7 @@ public class Order {
         return false;
       }
       try {
-          PreparedStatement sql = connection.prepareStatement("INSERT INTO orders (`userId`, `isbn`, `quantity`) VALUES ("+id+","+isbn+","+quantity+")");
+          PreparedStatement sql = connection.prepareStatement("INSERT INTO ORDERS (`userId`, `isbn`, `quantity`) VALUES ("+id+","+isbn+","+quantity+")");
           sql.execute();
 
       }catch (SQLException e){
@@ -42,7 +42,7 @@ public class Order {
     public ArrayList<String[]> ShowOrders(){
         ArrayList<String[]> res = new ArrayList<>();
         try {
-            PreparedStatement sql = connection.prepareStatement("Select Orders.orderId , USER_INFORMATION.userName , BOOK.title , Orders.quantity from BOOK , Orders , USER_INFORMATION where Orders.userId = USER_INFORMATION.userId and BOOK.isbn=Orders.isbn ");
+            PreparedStatement sql = connection.prepareStatement("Select ORDERS.orderId , USER_INFORMATION.userName , BOOK.title , ORDERS.quantity from BOOK , ORDERS , USER_INFORMATION where ORDERS.userId = USER_INFORMATION.userId and BOOK.isbn=ORDERS.isbn ");
             ResultSet resultSet = sql.executeQuery();
             while (resultSet.next()) {
                String[] currOrder = new String[4]; //[orderId , Manger name , book name , bookQuantity]

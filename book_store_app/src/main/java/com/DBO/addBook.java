@@ -17,7 +17,7 @@ public class addBook {
 			String str = "INSERT INTO `bookstore`.`book` (`title`, `publisherName`, `publicationYear`, `sellingPrice`, `category`, `numOfCopies`, `threshold`) VALUES ("
 					+ "\"" + title + "\","
 					+ "\"" + publisherName + "\","
-					+ "\"" + Integer.parseInt(publicationYear) + "\","
+					+ "\"" + publicationYear + "\","
 					+ "\"" + Double.parseDouble(sellingPrice) + "\","
 					+ "\"" + category + "\","
 					+ "\"" + Integer.parseInt(numOfCopies) + "\","
@@ -25,17 +25,14 @@ public class addBook {
 			PreparedStatement sql = connection.prepareStatement(str);
 			sql.execute();
 			int isbn = getISBN(title);
-			String[] authors = authorName.split(",");
-			for(int i=0;i<authors.length;i++) {
-				int authorId = getAuthorId(authors[i]);
-				if (authorId == 0) {
-					addAuthor(authors[i]);
-					authorId = getAuthorId(authors[i]);
-				}
-				insertToBook_Author(isbn, authorId);
+			int authorId = getAuthorId(authorName);
+			if(authorId == 0){
+				addAuthor(authorName);
+				authorId = getAuthorId(authorName);
 			}
+            insertToBook_Author(isbn,authorId);
 			return true;
-		}catch (SQLException | NumberFormatException e){
+		}catch (Exception e){
 			System.out.println(e.getMessage());
 			return false;
 		}

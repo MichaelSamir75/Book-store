@@ -12,7 +12,7 @@ public class DBConnection {
         if(connection != null) return connection;
         String url = "jdbc:mysql://localhost:3306/BOOKSTORE?useSSL=false";
         String user = "root";
-        String password = "TIGER";
+        String password = "welcome123";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,user,password);

@@ -126,8 +126,15 @@ public class profileController {
     }
 
     @FXML
-    void onTopCustomers(MouseEvent event) {
-
+    void onReports(MouseEvent event) {
+        closeProfileView();
+        reportsController reportsController = new reportsController();
+        try {
+            reportsController.reportsView();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     @FXML
