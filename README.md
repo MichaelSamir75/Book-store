@@ -4,7 +4,7 @@
 A desktop application with java system designed for book stores to facilitate managing the stores and also an offline book store.
 There are 2 types of users in our app, stores managers and customers. 
 
-##Installation:
+## Installation:
 * clone the repo 
 * run the "loginScreen.java" from views.
 * enjoy the system 
@@ -15,7 +15,7 @@ There are 2 types of users in our app, stores managers and customers.
 * DataBase: MySQL
 
 ## Features:
-###For customers:
+### For customers:
 * sign in / sign up
 * Edit profile info (name, password)
 * Search for book
@@ -24,7 +24,7 @@ There are 2 types of users in our app, stores managers and customers.
 * Checkout shopping cart
 * Log out
 
-###For managers:
+### For managers:
 * same operations as customer
 * Add book
 * Update book
