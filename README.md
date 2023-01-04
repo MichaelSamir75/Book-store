@@ -36,5 +36,5 @@ There are 2 types of users in our app, stores managers and customers.
 
 ## Screenshots:
 ### Sign in
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png?raw=true)
 ![alt text](https://github.com/MichaelSamir75/Book-store/edit/main/ScreenShots/SignIn.png "sign in")
