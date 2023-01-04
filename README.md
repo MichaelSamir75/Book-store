@@ -1,6 +1,7 @@
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![MySQL](https://img.shields.io/badge/Java-%2300f.svg)
 ![java](https://img.shields.io/badge/-Java-000?&logo=Java)
+![JavaFX](https://img.shields.io/badge/-JavaFX-fff?&logo=Java)
+
 # Book-store
 A desktop application with java system designed for book stores to facilitate managing the stores and also an offline book store.
 There are 2 types of users in our app, stores managers and customers. 
