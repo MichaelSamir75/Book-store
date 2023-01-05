@@ -80,6 +80,18 @@ create table CREDIT_CARD(
   expiryDate  Date NOT NULL,
   primary key (cardNumber)
 );
+
+create table categories
+(
+  name varchar(10) primary key
+);
+
+insert into categories
+values ('science'),
+       ('art'),
+       ('religion'),
+       ('history'),
+       ('geography');
 /*---------------------------------- Indexing ----------------------------------*/
 create index userIdIndex on user_information(userId);
 create index userEmailIndex on user_information(email);
@@ -100,7 +112,12 @@ begin
         SIGNAL SQLSTATE '45000'SET MESSAGE_TEXT = 'Cannot update book with negative number of copies ';
 end if;
 end;$$
+delimiter ;
+-- INSERT INTO `bookstore`.`publisher` (`publisherName`, `publisherAddress`, `publisherPhone`) VALUES ('elahram', 'cairo', '01023564789');
+-- INSERT INTO `bookstore`.`book` (`title`, `publisherName`, `publicationYear`, `sellingPrice`, `category`, `numOfCopies`, `threshold`) VALUES ('algo', 'elahram', '2022', '130', 'history', '5', '2');
+-- update book set numOfCopies=-1 where book.isbn=1;
 
+delimiter $$
 create trigger place_order
 after update on book 
 for each row
@@ -109,7 +126,13 @@ begin
             insert into ORDERS(userId,isbn,quantity) values ( "0" ,old.isbn,old.threshold);
     end if;
 end;$$
+delimiter ;
+-- INSERT INTO `bookstore`.`user_information` (`userId`, `userName`, `password`, `phone`, `first_name`, `last_name`, `email`, `Shipping_address`) VALUES ('0', 'system', '123456789', '01069852347', 'hassan', 'mohamed', 'k@gmail.com', 'alex');
+-- INSERT INTO `bookstore`.`publisher` (`publisherName`, `publisherAddress`, `publisherPhone`) VALUES ('elahram', 'cairo', '01023564789');
+-- INSERT INTO `bookstore`.`book` (`title`, `publisherName`, `publicationYear`, `sellingPrice`, `category`, `numOfCopies`, `threshold`) VALUES ('algo', 'elahram', '2022', '130', 'history', '5', '2');
+-- update book set numOfCopies=1 where book.isbn=1;
 
+delimiter $$
 create trigger confirmOrder 
 before  delete on ORDERS
 for each row
@@ -117,4 +140,5 @@ begin
     update book set numOfCopies = numOfCopies + old.quantity where isbn = old.isbn ;
 end;$$
 delimiter ;
+-- delete from ORDERS where orders.orderId = 2;
 

@@ -1,18 +1,15 @@
 package com.DBO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ModifyBook {
 	private Connection connection;
 	addBook add = new addBook();
 	public ModifyBook() {
-		connection = DBConnection.createConnection();
+		createConnection();
 	}
 
-	public boolean modifyBook(String oddTitle,String title,String authorName,String publisherName,String publicationYear,String sellingPrice,String category,String numOfCopies,String threshold){
+	public boolean modifyBook(String oddTitle,String title,String authorName,String publisherName,String publicationYear,String sellingPrice,String category,String numOfCopies,String threshold) {
 		try {
 			if(!isTitle(oddTitle)) return false;
 			int Isbn = getISBN(oddTitle);
@@ -37,6 +34,8 @@ public class ModifyBook {
 				}
 				insertToBook_Author(Isbn, authorId);
 			}
+			connection.commit();
+			connection.close();
 			return true;
 		}catch (SQLException e){
 			System.out.println(e.getMessage());
@@ -179,6 +178,24 @@ public class ModifyBook {
 		}catch (SQLException e){
 			System.out.println(e.getMessage());
 			return false;
+		}
+	}
+
+	private void createConnection()  {
+		try{
+			String url = "jdbc:mysql://localhost:3306/BOOKSTORE?useSSL=false";
+			String user = "root";
+			String password = "TIGER";
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				connection = DriverManager.getConnection(url,user,password);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+			connection.setAutoCommit(false);
+		}catch (SQLException e){
+			System.out.println(e.getMessage());
 		}
 	}
 }

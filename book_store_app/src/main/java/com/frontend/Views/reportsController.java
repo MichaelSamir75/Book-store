@@ -66,7 +66,7 @@ public class reportsController {
         Stage reportStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("showReports.fxml"));
         loader.setController(this);
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         reportStage.setTitle("Book Store");
         reportStage.setScene(new Scene(root));
         reportStage.show();

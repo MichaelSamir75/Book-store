@@ -18,7 +18,7 @@ public class ShowReport {
             String reportpath = "TotalSalesForBooks.jrxml";
             JasperReport JR = JasperCompileManager.compileReport(reportpath);
             JasperPrint Jp = JasperFillManager.fillReport(JR,null,connection);
-            JasperViewer.viewReport(Jp);
+            JasperViewer.viewReport(Jp,false);
         }catch (JRException e){
             System.out.println(e.getMessage());
         }
@@ -28,7 +28,7 @@ public class ShowReport {
             String reportpath = "Top5CustomersPurchaseTheMost.jrxml";
             JasperReport JR = JasperCompileManager.compileReport(reportpath);
             JasperPrint Jp = JasperFillManager.fillReport(JR,null,connection);
-            JasperViewer.viewReport(Jp);
+            JasperViewer.viewReport(Jp,false);
         }catch (JRException e){
             System.out.println(e.getMessage());
         }
@@ -38,7 +38,8 @@ public class ShowReport {
             String reportpath = "Top10SellingBooks.jrxml";
             JasperReport JR = JasperCompileManager.compileReport(reportpath);
             JasperPrint Jp = JasperFillManager.fillReport(JR,null,connection);
-            JasperViewer.viewReport(Jp);
+            JasperViewer.viewReport(Jp,false);
+
         }catch (JRException e){
             System.out.println(e.getMessage());
         }
