@@ -89,4 +89,61 @@ public class Library {
         }
         return matchingBooks;
     }
+    public static HashMap<Integer, Book> searchByPrice(String searchTerm) throws SQLException {
+        if(searchTerm.isEmpty()) return getAllBooks();
+        Connection connection = DBConnection.createConnection();
+        HashMap<Integer, Book> matchingBooks = new HashMap<>();
+        String query = "SELECT * FROM bookstore.BOOK WHERE sellingPrice <= ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        try {
+            statement.setDouble(1, Double.parseDouble(searchTerm));
+        } catch(Exception e) {
+            System.out.println(e);
+            return matchingBooks;
+        }
+        ResultSet result = statement.executeQuery();
+        while(result.next()) {
+            int isbn = result.getInt(1);
+            List<String> authors = getBookAuthors(isbn);
+            String title = result.getString(2);
+            String publisher = result.getString(3);
+            String publicationYear = result.getString(4);
+            double price = result.getDouble(5);
+            String category = result.getString(6);
+            int numOfCopies = result.getInt(7);
+            int threshold = result.getInt(8);
+            Book book = new Book(isbn, title, authors, publisher, publicationYear, price, category, numOfCopies, threshold);
+            matchingBooks.put(isbn, book);
+        }
+        return matchingBooks;
+    }
+
+    public static HashMap<Integer, Book> searchByIsbn(String searchTerm) throws SQLException {
+        if(searchTerm.isEmpty()) return getAllBooks();
+        Connection connection = DBConnection.createConnection();
+        HashMap<Integer, Book> matchingBooks = new HashMap<>();
+        String query = "SELECT * FROM bookstore.BOOK WHERE isbn = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        try {
+            statement.setInt(1, Integer.parseInt(searchTerm));
+        } catch(Exception e) {
+            System.out.println(e);
+            return matchingBooks;
+        }
+        ResultSet result = statement.executeQuery();
+        while(result.next()) {
+            int isbn = result.getInt(1);
+            List<String> authors = getBookAuthors(isbn);
+            String title = result.getString(2);
+            String publisher = result.getString(3);
+            String publicationYear = result.getString(4);
+            double price = result.getDouble(5);
+            String category = result.getString(6);
+            int numOfCopies = result.getInt(7);
+            int threshold = result.getInt(8);
+            Book book = new Book(isbn, title, authors, publisher, publicationYear, price, category, numOfCopies, threshold);
+            matchingBooks.put(isbn, book);
+        }
+        return matchingBooks;
+    }
 }

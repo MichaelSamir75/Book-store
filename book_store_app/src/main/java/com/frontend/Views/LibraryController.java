@@ -109,12 +109,13 @@ public class LibraryController implements Initializable {
             return;
         }
         error.setVisible(false);
-        if(searchAttr.equals("ISBN")) shownBooks = Library.getMatchingBooks(searchTerm, "isbn");
+        if(searchAttr.equals("ISBN")) shownBooks = Library.searchByIsbn(searchTerm);
         else if(searchAttr.equals("Title")) shownBooks = Library.getMatchingBooks(searchTerm, "title");
         else if(searchAttr.equals("Author")) shownBooks = Library.searchByAuthor(searchTerm);
         else if(searchAttr.equals("Publisher")) shownBooks = Library.getMatchingBooks(searchTerm, "publisherName");
         else if(searchAttr.equals("Publication Year")) shownBooks = Library.getMatchingBooks(searchTerm, "publicationYear");
         else if(searchAttr.equals("Category")) shownBooks = Library.getMatchingBooks(searchTerm, "category");
+        else if(searchAttr.equals("Price less than or equal")) shownBooks = Library.searchByPrice(searchTerm);
         showBooks(shownBooks);
     }
     

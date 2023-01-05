@@ -38,7 +38,7 @@
                      <String fx:value="Category" />
                      <String fx:value="Publisher" />
                      <String fx:value="Publication Year" />
-                     <String fx:value="Price" />
+                     <String fx:value="Price less than or equal" />
                   </FXCollections>
                </items>
             </ComboBox>
