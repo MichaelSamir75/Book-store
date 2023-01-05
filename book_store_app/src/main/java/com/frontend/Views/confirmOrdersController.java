@@ -131,9 +131,9 @@ public class confirmOrdersController {
         if(prev.size() > 0){
             int k = current.size();
             for(int i=0; i<k; i++){
-                data.add(0, current.remove(0));
+                data.add(0, current.remove(k-1-i));
             }
-            k = prev.size();
+            k = Math.min(4,prev.size());
             for(int i=0; i<k; i++){
                 data.add(0, prev.remove(0));
             }
@@ -185,7 +185,7 @@ public class confirmOrdersController {
 
         int k = current.size();
         for(int i=0; i<k; i++){
-            prev.add(current.remove(0));
+            prev.add(0,current.remove(0));
         }
         if(data.size() + current.size() >= 1){
             orderno1.setVisible(true);
@@ -227,7 +227,6 @@ public class confirmOrdersController {
             book4.setText(current.get(current.size()-1)[2]);
             quantity4.setText(current.get(current.size()-1)[3]);
         }
-
     }
     public void confirmOrdersView() throws IOException {
         Stage ordersStage = new Stage();
