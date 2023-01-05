@@ -13,12 +13,10 @@ public class loginScreen extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(loginScreen.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
-//        stage.getIcons().add(new Image());
         stage.setTitle("Book Store");
         stage.setScene(scene);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }

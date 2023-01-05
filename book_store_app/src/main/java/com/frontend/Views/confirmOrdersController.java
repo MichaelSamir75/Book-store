@@ -98,8 +98,6 @@ public class confirmOrdersController {
 
     @FXML
     private Label quantity4;
-    @FXML
-    private Button show;
     private ArrayList<String[]> data;
     private ArrayList<String[]> current = new ArrayList<>();
     private ArrayList<String[]> prev = new ArrayList<>();
@@ -133,13 +131,11 @@ public class confirmOrdersController {
         if(prev.size() > 0){
             int k = current.size();
             for(int i=0; i<k; i++){
-                System.out.println("i: " + Integer.toString((i)));
-                data.add(current.remove(0));
+                data.add(0, current.remove(0));
             }
-//            k = prev.size();
-            for(int i=0; i<4; i++){
-                System.out.println("i: " + Integer.toString((i)));
-                data.add(prev.remove(0));
+            k = prev.size();
+            for(int i=0; i<k; i++){
+                data.add(0, prev.remove(0));
             }
             display4();
         }
@@ -147,7 +143,6 @@ public class confirmOrdersController {
     @FXML
     void onConfirm1(MouseEvent event) {
         Order o = new Order();
-        System.out.println(current.get(0)[1]);
         o.ConfirmOrders(current.get(0)[0]);
         current.remove(0);
         confirm1.setVisible(false);
@@ -156,45 +151,25 @@ public class confirmOrdersController {
     @FXML
     void onConfirm2(MouseEvent event) {
         Order o = new Order();
-        System.out.println(current.get(1)[1]);
         o.ConfirmOrders(current.get(1)[0]);
         current.remove(1);
-        confirm1.setVisible(false);
+        confirm2.setVisible(false);
     }
 
     @FXML
     void onConfirm3(MouseEvent event) {
         Order o = new Order();
-        System.out.println(current.get(2)[1]);
         o.ConfirmOrders(current.get(2)[0]);
         current.remove(2);
-        confirm1.setVisible(false);
+        confirm3.setVisible(false);
     }
 
     @FXML
     void onConfirm4(MouseEvent event) {
         Order o = new Order();
-        System.out.println(current.get(3)[1]);
         o.ConfirmOrders(current.get(3)[0]);
         current.remove(0);
-        confirm1.setVisible(false);
-    }
-
-
-    @FXML
-    void onShow(MouseEvent event) {
-        Order o = new Order();
-        data = o.ShowOrders();
-//        for(int i=0; i< data.size(); i++){
-//            for (int j=0; j< data.get(i).length; j++){
-//                System.out.println(data.get(i)[j]);
-//            }
-//        }
-        show.setVisible(false);
-        previous.setVisible(true);
-        next.setVisible(true);
-        backButton.setVisible(true);
-        display4();
+        confirm4.setVisible(false);
     }
 
     public void display4(){
@@ -208,18 +183,16 @@ public class confirmOrdersController {
         orderno3.setVisible(false);
         orderno4.setVisible(false);
 
-        System.out.println("current: " + Integer.toString(current.size()));
         int k = current.size();
         for(int i=0; i<k; i++){
-            System.out.println("i: " + Integer.toString((i)));
             prev.add(current.remove(0));
         }
-        System.out.println("current: " + Integer.toString(current.size()));
         if(data.size() + current.size() >= 1){
             orderno1.setVisible(true);
             current.add(data.remove(0));
             orderno1.setText("Order #" + Integer.toString((prev.size()+current.size())));
             panel1.setVisible(true);
+            confirm1.setVisible(true);
             manager1.setText(current.get(current.size()-1)[1]);
             book1.setText(current.get(current.size()-1)[2]);
             quantity1.setText(current.get(current.size()-1)[3]);
@@ -229,6 +202,7 @@ public class confirmOrdersController {
             current.add(data.remove(0));
             orderno2.setText("Order #" + Integer.toString((prev.size()+current.size())));
             panel2.setVisible(true);
+            confirm2.setVisible(true);
             manager2.setText(current.get(current.size()-1)[1]);
             book2.setText(current.get(current.size()-1)[2]);
             quantity2.setText(current.get(current.size()-1)[3]);
@@ -238,16 +212,17 @@ public class confirmOrdersController {
             current.add(data.remove(0));
             orderno3.setText("Order #" + Integer.toString((prev.size()+current.size())));
             panel3.setVisible(true);
+            confirm3.setVisible(true);
             manager3.setText(current.get(current.size()-1)[1]);
             book3.setText(current.get(current.size()-1)[2]);
             quantity3.setText(current.get(current.size()-1)[3]);
         }
-        System.out.println(data.size() + current.size());
         if(data.size() + current.size() >= 4){
             orderno4.setVisible(true);
             current.add(data.remove(0));
             orderno4.setText("Order #" + Integer.toString((prev.size()+current.size())));
             panel4.setVisible(true);
+            confirm4.setVisible(true);
             manager4.setText(current.get(current.size()-1)[1]);
             book4.setText(current.get(current.size()-1)[2]);
             quantity4.setText(current.get(current.size()-1)[3]);
@@ -256,10 +231,20 @@ public class confirmOrdersController {
     }
     public void confirmOrdersView() throws IOException {
         Stage ordersStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("confirmOrder.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("confirmOrder.fxml"));
+        loader.setController(this);
+        Parent root = (Parent) loader.load();
         ordersStage.setTitle("Book Store");
         ordersStage.setScene(new Scene(root));
         ordersStage.show();
+
+        //display
+        Order o = new Order();
+        data = o.ShowOrders();
+        previous.setVisible(true);
+        next.setVisible(true);
+        backButton.setVisible(true);
+        this.display4();
     }
 
 }

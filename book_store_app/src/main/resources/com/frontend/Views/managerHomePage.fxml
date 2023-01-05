@@ -39,12 +39,11 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="topCustomersButton" layoutX="377.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onTopCustomers" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Show reports">
+            <Button fx:id="topCustomersButton" layoutX="377.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onReports" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Show reports">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-
             <Button fx:id="logOutButton" layoutX="377.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#onLogOut" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Log out">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
@@ -60,7 +59,7 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="editProfileButton" layoutX="90.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#onEditProfile" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit profile">
+            <Button fx:id="editProfileButton" layoutX="90.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onEditProfile" prefHeight="38.0" prefWidth="178.0" stylesheets="@../Styles/button.css" text="Edit profile">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>

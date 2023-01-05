@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="537.0" prefWidth="678.0" styleClass="root" stylesheets="@../Styles/loginStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frontend.Views.confirmOrdersController">
+<AnchorPane prefHeight="537.0" prefWidth="678.0" styleClass="root" stylesheets="@../Styles/loginStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane opacity="0.8" prefHeight="537.0" prefWidth="678.0" style="-fx-background-color: black;">
             <children>
@@ -144,11 +144,6 @@
                         </Label>
                     </children>
                 </AnchorPane>
-                <Button fx:id="show" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#onShow" prefHeight="80.0" prefWidth="251.0" stylesheets="@../Styles/button.css" text="SHOW ORDERS">
-                    <font>
-                        <Font size="30.0" />
-                    </font>
-                </Button>
             </children>
         </AnchorPane>
         <Label alignment="CENTER" layoutX="214.0" layoutY="24.0" prefHeight="52.0" prefWidth="269.0" text="Confirm Orders" textFill="#ffc983">
