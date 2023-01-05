@@ -61,7 +61,7 @@ public class Order {
     public Boolean ConfirmOrders(String oId){
         int orderId = Integer.parseInt(oId);
         try {
-            PreparedStatement sql = connection.prepareStatement("delete from orders where orderId = " + orderId);
+            PreparedStatement sql = connection.prepareStatement("delete from ORDERS where orderId = " + orderId);
             sql.execute();
             return true;
         }catch (SQLException e){
