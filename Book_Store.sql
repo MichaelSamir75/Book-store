@@ -65,7 +65,7 @@ create table ORDERS(
 );
 
 create table SELLING_ORDERS(
-  orderId       int NOT NULL,
+  orderId       int auto_increment,
   userId        int NOT NULL,
   isbn          int NOT NULL,
   quantity      int NOT NULL,
@@ -117,3 +117,4 @@ begin
     update book set numOfCopies = numOfCopies + old.quantity where isbn = old.isbn ;
 end;$$
 delimiter ;
+

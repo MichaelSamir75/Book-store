@@ -70,7 +70,6 @@ public class loginController {
             SignIn signIn = new SignIn();
             if(signIn.run(username,pass)) {
                 closeLoginView();
-                writeEmailToFile(username);
                 new profileController().profileView();
             }
             else {
@@ -139,34 +138,5 @@ public class loginController {
         stage.close();
         loginView();
     }
-
-    private void writeEmailToFile(String email){
-        try {
-            FileWriter myWriter = new FileWriter("emailInfo");
-            myWriter.write(email);
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
-    void errorView() throws IOException {
-        Stage errorStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("error.fxml")));
-        errorStage.setTitle("ERROR!");
-        errorStage.setScene(new Scene(root));
-        errorStage.setResizable(false);
-        errorStage.show();
-    }
-
-    void showAlert(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("ERROR!");
-        alert.setContentText("Please enter valid username and password");
-        alert.showAndWait();
-
-    }
-
-
 
 }
